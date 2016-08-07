@@ -9,8 +9,9 @@ p.init()
 
 class Tile(): 
     def __init__(self, sprite, pos, tile_size, name='A tile', walkable=True): 
-        self.pos_coordinates = pos[0], pos[1] 
-        self.pos_index = pos[0]//tile_size, pos[1]//tile_size 
+        self.tile_size = tile_size
+        self.pos_index = pos[0], pos[1] 
+        self.pos_coordinates = pos[0]*self.tile_size, pos[1]*self.tile_size 
         self.sprite = sprite 
         self.is_walkable = walkable 
         self.name = name 
@@ -21,4 +22,4 @@ class Tile():
 
     def render(self, screen): 
         for i in self.sprite: 
-            screen.blit(i, self.pos_coordinates) 
+            screen.blit(i, (self.pos_coordinates[0], self.pos_coordinates[1])) 

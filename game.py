@@ -24,7 +24,6 @@ SCALE = 3
 TILE_DIMENSION = 16*SCALE 
 window_size = window_width, window_height = 1280, 960 
 screen = p.display.set_mode(window_size) 
-# board_size must be divisible by 4 or it breaks player and goblin positions.  Should be fixed once tile positions are read from external file 
 board_size = board_width, board_height = 20, 20 
 game_board = [[0] * board_height for i in range(board_width)] 
 actor_board = [[0] * board_height for i in range(board_width)] 
@@ -48,8 +47,8 @@ for i in sprites:
     sprites[i].set_colorkey(TRANS) 
     sprites[i] = p.transform.scale(sprites[i], (TILE_DIMENSION, TILE_DIMENSION)) 
 
-player = Player([sprites['player']], (TILE_DIMENSION*board_width//4, TILE_DIMENSION*board_height//4), TILE_DIMENSION) 
-goblin = Goblin([sprites['goblin'], sprites['barb_outfit'], sprites['jester_hat']], (TILE_DIMENSION*board_width//2, TILE_DIMENSION*board_height//2), TILE_DIMENSION) 
+player = Player([sprites['player']], (board_width//4, board_width//4), TILE_DIMENSION) 
+goblin = Goblin([sprites['goblin'], sprites['barb_outfit'], sprites['jester_hat']], (board_width//2, board_width//2), TILE_DIMENSION) 
 
 ui = UI(window_size, board_size, 32, TILE_DIMENSION)
 
@@ -57,30 +56,30 @@ def create_board(board_size):
     for y in range(board_height): 
         for x in range(board_width): 
             if x == 0 and y == 0: 
-                game_board[y][x] = Tile([sprites['stoneWallCornerTL']], (x*TILE_DIMENSION, 
-                y*TILE_DIMENSION), TILE_DIMENSION, 'A wall') 
+                game_board[y][x] = Tile([sprites['stoneWallCornerTL']], (x, 
+                y), TILE_DIMENSION, 'A wall') 
             elif x == board_width-1 and y == 0: 
-                game_board[y][x] = Tile([sprites['stoneWallCornerTR']], (x*TILE_DIMENSION, 
-                y*TILE_DIMENSION), TILE_DIMENSION, 'A wall') 
+                game_board[y][x] = Tile([sprites['stoneWallCornerTR']], (x, 
+                y), TILE_DIMENSION, 'A wall') 
             elif x == 0 and y == board_height-1: 
-                game_board[y][x] = Tile([sprites['stoneWallCornerBL']], (x*TILE_DIMENSION, 
-                y*TILE_DIMENSION), TILE_DIMENSION, 'A wall') 
+                game_board[y][x] = Tile([sprites['stoneWallCornerBL']], (x, 
+                y), TILE_DIMENSION, 'A wall') 
             elif x == board_width-1 and y == board_height-1: 
-                game_board[y][x] = Tile([sprites['stoneWallCornerBR']], (x*TILE_DIMENSION, 
-                y*TILE_DIMENSION), TILE_DIMENSION, 'A wall') 
+                game_board[y][x] = Tile([sprites['stoneWallCornerBR']], (x, 
+                y), TILE_DIMENSION, 'A wall') 
             elif y == 0 or y == board_height-1: 
-                game_board[y][x] = Tile([sprites['stoneWallHori']], (x*TILE_DIMENSION, 
-                y*TILE_DIMENSION), TILE_DIMENSION, 'A wall') 
+                game_board[y][x] = Tile([sprites['stoneWallHori']], (x, 
+                y), TILE_DIMENSION, 'A wall') 
             elif x == 0 or x == board_width-1: 
-                game_board[y][x] = Tile([sprites['stoneWallVert']], (x*TILE_DIMENSION, 
-                y*TILE_DIMENSION), TILE_DIMENSION, 'A wall')
+                game_board[y][x] = Tile([sprites['stoneWallVert']], (x, 
+                y), TILE_DIMENSION, 'A wall')
             elif x == 0 or x == board_width-1 or y == 0 or y == board_height-1: 
-                game_board[y][x] = Tile([sprites['stoneWall']], (x*TILE_DIMENSION, 
-                y*TILE_DIMENSION), TILE_DIMENSION, 'A wall') 
+                game_board[y][x] = Tile([sprites['stoneWall']], (x, 
+                y), TILE_DIMENSION, 'A wall') 
             else: 
-                game_board[y][x] = Tile([sprites['stoneFloor']], (x*TILE_DIMENSION, y*TILE_DIMENSION), TILE_DIMENSION, 'The floor') 
-    actor_board[board_width//4][board_height//4] = player 
-    actor_board[board_width//2][board_height//2] = goblin 
+                game_board[y][x] = Tile([sprites['stoneFloor']], (x, y), TILE_DIMENSION, 'The floor') 
+    actor_board[player.pos_index[0]][player.pos_index[1]] = player 
+    actor_board[goblin.pos_index[0]][goblin.pos_index[1]] = goblin 
 
 def draw_board(board_size): 
     for y in range(board_size[1]): 
