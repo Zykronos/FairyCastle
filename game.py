@@ -42,7 +42,8 @@ sprites = dict(stoneWall=p.image.load('assets/stoneWall.bmp').convert(),
             goblin=p.image.load('assets/goblin.bmp').convert(), 
             green_shirt=p.image.load('assets/greenShirt.bmp').convert(), 
             jester_hat=p.image.load('assets/jesterHat.bmp').convert(), 
-            barb_outfit=p.image.load('assets/barbarianOutfit.bmp').convert())
+            barb_outfit=p.image.load('assets/barbarianOutfit.bmp').convert(), 
+            cursor=p.image.load('assets/1/cursor.bmp').convert())
 for i in sprites: 
     sprites[i].set_colorkey(TRANS) 
     sprites[i] = p.transform.scale(sprites[i], (TILE_DIMENSION, TILE_DIMENSION)) 
@@ -50,7 +51,7 @@ for i in sprites:
 player = Player([sprites['player']], (board_width//4, board_width//4), TILE_DIMENSION) 
 goblin = Goblin([sprites['goblin'], sprites['barb_outfit'], sprites['jester_hat']], (board_width//2, board_width//2), TILE_DIMENSION) 
 
-ui = UI(window_size, board_size, 32, TILE_DIMENSION)
+ui = UI(window_size, board_size, 32, TILE_DIMENSION, sprites['cursor'])
 
 def create_board(board_size): 
     for y in range(board_height): 
