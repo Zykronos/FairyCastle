@@ -1,0 +1,59 @@
+Inspirations: 
+    Dwarf Fortress 
+        Roguelike mode 
+        Castle mode 
+    Runescape 
+        Each individual character has different skills: 
+            Mining 
+                lvl1 = Copper 
+                lvl5 = Bronze 
+                lvl10 = Iron 
+            Smithing 
+            Farming 
+                lvl1 = Potatoes 
+                lvl5 = Flax 
+            Crafting 
+            Fishing 
+            Cooking 
+            Woodcutting 
+                lvl1 = Logs 
+                lvl5 = Oak 
+            Fletching 
+                lvl1 = Arrows 
+                lvl5 = Bows 
+            Melee 
+            Archery 
+            Magic 
+                Based on runes 
+                Requires a medium inscribed with runes / implanted with runic stones to cast 
+                Summoning? 
+                    Beasts of burden, temporary peasants 
+                    Requires a rune stone, which attracts fairies / spirits / valkyries to control the construct 
+                Shapeshifting? 
+            Defense 
+        Character's unlock new crafting items by increasing their levels 
+            e.g. Farming level 1 for potatoes, Farming level 5 for wheat, etc.  
+Tiles-as-objects: 
+    Every tile, from the floor to the player to item pickups, is its own object 
+    Basic tile attributes include location, sprite, layer, walkability 
+    Basic tile methods include draw 
+Unity-style layering:  
+    'ground' layer, including the floor and walls 
+    'actor' layer, including the player and enemies 
+    Each tile given a layer, then drawn according to its layer 
+        e.g. 'actors' drawn in front of 'ground' 
+Game Modes: 
+    Campaign Mode: 
+        Story-based, nonrandomized open-world campain 
+        Game board is split into different 'levels'; large areas ending with a boss fight 
+            Each level is connected to the others, so players can go through levels and fight bosses in a nonlinear way 
+    Roguelike Mode: 
+        Randomized levels connect to the others through stairs 
+        One life; player must restart from the beginning when they die 
+    Castle Mode: 
+        Dwarf Fortress style strategy game 
+        Player controls various units and must build up their city, building workshops, farms, and other buildings 
+Tutorial 
+    Initial implementation as a text-only selection from the main menu 
+    Add an optional quest-based tutorial later 
+    
