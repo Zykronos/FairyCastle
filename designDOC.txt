@@ -1,7 +1,13 @@
 Inspirations: 
+    Dwarf Fortress, Civilization, Runescape, Megaman 
     Dwarf Fortress 
         Roguelike mode 
         Castle mode 
+    Civilization 
+        In Castle mode, each civ will have one settlement, similar to DF's Castle mode 
+        Settlements will eventually have to expand 
+        Civs can send out settlers to found to settlements, expanding their empire 
+        Can build trade routes between civs 
     Runescape 
         Each individual character has different skills: 
             Mining 
@@ -32,7 +38,13 @@ Inspirations:
                 Shapeshifting? 
             Defense 
         Character's unlock new crafting items by increasing their levels 
-            e.g. Farming level 1 for potatoes, Farming level 5 for wheat, etc.  
+            e.g. Farming level 1 for potatoes, Farming level 5 for wheat, etc. 
+    Megaman 
+        In Adventure mode, the game world will consist of various 'levels' connected to each other through locked doors 
+        Player must defeat bosses to unlock certain doors and progress through the game 
+        Defeating bosses unlocks special powers 
+        Boss order possibly nonlinear 
+            i.e. player can fight bosses in any order, but must defeat all of them before moving on to the final gauntlet ('Sigma stages') 
 Tiles-as-objects: 
     Every tile, from the floor to the player to item pickups, is its own object 
     Basic tile attributes include location, sprite, layer, walkability 
@@ -43,6 +55,7 @@ Unity-style layering:
     Each tile given a layer, then drawn according to its layer 
         e.g. 'actors' drawn in front of 'ground' 
 Game Modes: 
+    Campaign and Castle modes will use Runescape-style skills, while Roguelike mode will be more traditionally class-based (e.g. Warrior, Mage, Thief, etc.) 
     Campaign Mode: 
         Story-based, nonrandomized open-world campain 
         Game board is split into different 'levels'; large areas ending with a boss fight 
@@ -53,6 +66,8 @@ Game Modes:
     Castle Mode: 
         Dwarf Fortress style strategy game 
         Player controls various units and must build up their city, building workshops, farms, and other buildings 
+        Eventual intention to be more like Civilization, where the player creates an empire rather than a singular castle 
+
 Tutorial 
     Initial implementation as a text-only selection from the main menu 
     Add an optional quest-based tutorial later 
