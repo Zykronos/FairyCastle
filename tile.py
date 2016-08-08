@@ -8,10 +8,12 @@ p.init()
 # Implement support for tiles larger than 1x1 e.g. to support a fully grown tree that's 1x2 or a dragon that's 4x4 
 
 class Tile(): 
+    """ Every object in the game, from the floor to the walls to the player to the player's equipment is a Tile object """
     def __init__(self, sprite, pos, tile_size, SCREEN_OFFSET, name='A tile', walkable=True): 
+        self.SCREEN_OFFSET = SCREEN_OFFSET 
         self.tile_size = tile_size
-        self.pos_index = pos[0], pos[1] 
-        self.pos_coordinates = pos[0]*self.tile_size+SCREEN_OFFSET[0], pos[1]*self.tile_size+SCREEN_OFFSET[1] 
+        self.pos_index = [pos[0], pos[1]] 
+        self.pos_coordinates = self.pos_index[0]*self.tile_size+self.SCREEN_OFFSET[0], self.pos_index[1]*self.tile_size+self.SCREEN_OFFSET[1] 
         self.sprite = sprite 
         self.is_walkable = walkable 
         self.name = name 

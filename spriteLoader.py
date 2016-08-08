@@ -8,6 +8,7 @@ import pygame as p
 # If pixels, need to modify it to work off index 
 
 class Sprite(object):
+    """ Loads a tile sheet and returns a specified number of sprites """
     def __init__(self, sheet, start, size, col, rows=1): 
         self.frames = [] 
         for j in range(rows): 
