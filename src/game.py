@@ -1,5 +1,6 @@
 import pygame as p 
 import sys 
+import os 
 from tile import * 
 from ui import * 
 from player import * 
@@ -37,20 +38,20 @@ game_board = [[0] * board_height for i in range(board_width)]
 actor_board = [[0] * board_height for i in range(board_width)] 
 
 # sprite loading will become increasing excessive as more sprites are added.  Need to figure out a way to clean this up in order to handle 100+ sprites.  Hopefully loading from sprite sheet will help 
-sprites = dict(stoneWall=p.image.load('assets/stoneWall.bmp').convert(), 
-            stoneWallHori=p.image.load('assets/stoneWallHori.bmp').convert(), 
-            stoneWallVert=p.image.load('assets/stoneWallVert.bmp').convert(), 
-            stoneWallCornerTL=p.image.load('assets/stoneWallCornerTL.bmp').convert(), 
-            stoneWallCornerTR=p.image.load('assets/stoneWallCornerTR.bmp').convert(), 
-            stoneWallCornerBL=p.image.load('assets/stoneWallCornerBL.bmp').convert(), 
-            stoneWallCornerBR=p.image.load('assets/stoneWallCornerBR.bmp').convert(), 
-            stoneFloor=p.image.load('assets/stoneFloor.bmp').convert(), 
-            player=p.image.load('assets/player.bmp').convert(), 
-            goblin=p.image.load('assets/goblin.bmp').convert(), 
-            green_shirt=p.image.load('assets/greenShirt.bmp').convert(), 
-            jester_hat=p.image.load('assets/jesterHat.bmp').convert(), 
-            barb_outfit=p.image.load('assets/barbarianOutfit.bmp').convert(), 
-            cursor=p.image.load('assets/1/cursor.bmp').convert())
+sprites = dict(stoneWall=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneWall.bmp')).convert(), 
+            stoneWallHori=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneWallHori.bmp')).convert(), 
+            stoneWallVert=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneWallVert.bmp')).convert(), 
+            stoneWallCornerTL=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneWallCornerTL.bmp')).convert(), 
+            stoneWallCornerTR=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneWallCornerTR.bmp')).convert(), 
+            stoneWallCornerBL=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneWallCornerBL.bmp')).convert(), 
+            stoneWallCornerBR=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneWallCornerBR.bmp')).convert(), 
+            stoneFloor=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneFloor.bmp')).convert(), 
+            player=p.image.load(os.path.join('..', 'assets', 'actors', 'player.bmp')).convert(), 
+            goblin=p.image.load(os.path.join('..', 'assets', 'actors', 'goblin.bmp')).convert(), 
+            green_shirt=p.image.load(os.path.join('..', 'assets', 'actors', 'greenShirt.bmp')).convert(), 
+            jester_hat=p.image.load(os.path.join('..', 'assets', 'actors', 'jesterHat.bmp')).convert(), 
+            barb_outfit=p.image.load(os.path.join('..', 'assets', 'actors', 'barbarianOutfit.bmp')).convert(), 
+            cursor=p.image.load(os.path.join('..', 'assets', '1/cursor.bmp')).convert())
 # Goes through each sprite and sets a certain color to be transparent and scales it to the appropriate dimensions 
 for i in sprites: 
     sprites[i].set_colorkey(TRANS) 
