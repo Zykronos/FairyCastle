@@ -13,9 +13,8 @@ p.display.set_caption('Fairy Castle')
 # Implement level reader to load levels from external text files 
 # Implement Sprite() class to manage sprite loading (e.g. loading sprites from sprite sheets) 
 # Make code cleaner 
-# Change character movement to scroll map rather than move player 
 # Reconsider having game_board and actor_board be separate 
-# Stop recreating the board every frame 
+# Add heartbeat code 
 
 ''' Colors ''' 
 TRANS = (255, 0, 255) 
@@ -24,13 +23,14 @@ GREEN = (0, 255, 0)
 
 SCALE = 3 
 TILE_DIMENSION = 16*SCALE 
+VIEW_PORT = 20 
 window_size = window_width, window_height = 1280, 960 
 SCREEN_CENTER = (window_width//2, window_height//2) 
 # Offsets the game board by a certain amount 
 SCREEN_OFFSET_1 = (window_width//2-144, window_height//2-144) 
 screen = p.display.set_mode(window_size) 
 # Number of tiles in the game board 
-board_size = board_width, board_height = 15, 10 
+board_size = board_width, board_height = 100, 100 
 # The game board holds all non-actor tiles, such as the floor and walls 
 game_board = [[0] * board_height for i in range(board_width)] 
 # The actor board holds all player characters and enemies 
@@ -57,8 +57,8 @@ for i in sprites:
     sprites[i] = p.transform.scale(sprites[i], (TILE_DIMENSION, TILE_DIMENSION)) 
 
 # vvvv Temp code for testing player drawing vvvv 
-charPos = (board_width//4, board_height//4) 
-SCREEN_OFFSET = [SCREEN_CENTER[0]-charPos[0]*TILE_DIMENSION, SCREEN_CENTER[1]-charPos[1]*TILE_DIMENSION] 
+charPos = (75, 75)#(board_width//4, board_height//4) 
+SCREEN_OFFSET = [SCREEN_CENTER[0]-charPos[0]*TILE_DIMENSION-4*TILE_DIMENSION, SCREEN_CENTER[1]-charPos[1]*TILE_DIMENSION] 
 # ^^^^ Temp code for testing player drawing ^^^^ 
 player = Player([sprites['player']], charPos, TILE_DIMENSION, SCREEN_OFFSET) 
 #goblin = Goblin([sprites['goblin'], sprites['barb_outfit'], sprites['jester_hat']], (board_width//2, board_width//2), TILE_DIMENSION, SCREEN_OFFSET) 
@@ -92,19 +92,41 @@ def create_board(board_size):
             else: 
                 game_board[x][y] = Tile([sprites['stoneFloor']], (x, y), TILE_DIMENSION, SCREEN_OFFSET, 'The floor') 
     actor_board[player.pos_index[0]][player.pos_index[1]] = player 
-    actor_board[7][7] = Goblin([sprites['goblin'], sprites['barb_outfit'], sprites['jester_hat']], (board_width//2, board_width//2), TILE_DIMENSION, SCREEN_OFFSET) 
-
-def draw_board(board_size): 
-    for y in range(board_size[1]): 
-        for x in range(board_size[0]): 
-            can_draw(game_board[x][y]) 
-            can_draw(actor_board[x][y]) 
+    
+    
+def draw_board(VIEW_PORT): 
+    if player.pos_index[0]+VIEW_PORT//2+1<=board_width and player.pos_index[1]+VIEW_PORT//2+1<=board_height: 
+        for y in range(player.pos_index[1]-VIEW_PORT//2, player.pos_index[1]+VIEW_PORT//2+1): 
+            for x in range(player.pos_index[0]-VIEW_PORT//2, player.pos_index[0]+VIEW_PORT//2+1): 
+                can_draw(game_board[x][y]) 
+                can_draw(actor_board[x][y]) 
+    elif player.pos_index[0]+VIEW_PORT//2+1>board_width and player.pos_index[1]+VIEW_PORT//2+1<=board_height: 
+        for y in range(player.pos_index[1]-VIEW_PORT//2, player.pos_index[1]+VIEW_PORT//2+1): 
+            for x in range(player.pos_index[0]-VIEW_PORT//2, board_width): 
+                can_draw(game_board[x][y]) 
+                can_draw(actor_board[x][y]) 
+    elif player.pos_index[1]+VIEW_PORT//2+1>board_height and player.pos_index[0]+VIEW_PORT//2+1<=board_width: 
+        for y in range(player.pos_index[1]-VIEW_PORT//2, board_height): 
+            for x in range(player.pos_index[0]-VIEW_PORT//2, player.pos_index[0]+VIEW_PORT//2+1): 
+                can_draw(game_board[x][y]) 
+                can_draw(actor_board[x][y]) 
+    else: 
+        for y in range(player.pos_index[1]-VIEW_PORT//2, board_height): 
+            for x in range(player.pos_index[0]-VIEW_PORT//2, board_width): 
+                can_draw(game_board[x][y]) 
+                can_draw(actor_board[x][y]) 
 
 def can_draw(tile): 
     ''' Checks to see if an index in either game_board or actor_board is an actual tile, then displays it if it's within screen bounds '''
-    if type(tile) != int and tile.pos_coordinates[0] < ui.edge[0][0]: 
-        tile.render(screen) 
-    
+    if type(tile) != int: 
+        temp = tile 
+        temp.move(SCREEN_OFFSET)
+        if (temp.pos_coordinates[0] < ui.edge[0][0] and temp.pos_coordinates[0] >= -TILE_DIMENSION and temp.pos_coordinates[1] >= 0 and temp.pos_coordinates[1] < window_height): 
+                tile.move(SCREEN_OFFSET) 
+                tile.render(screen) 
+        else: 
+            tile.render(screen) 
+
 def can_move(tile, direction): 
     # Need to rework this function to handle movement checking more elegantly 
     if  direction == 'up': 
@@ -128,8 +150,8 @@ def move_board(direction):
     if  direction == 'left': 
         SCREEN_OFFSET[0] += TILE_DIMENSION
     if  direction == 'right': 
-        SCREEN_OFFSET[0] -= TILE_DIMENSION
-
+        SCREEN_OFFSET[0] -= TILE_DIMENSION 
+    
 def input(): 
     direction = '' 
     p.event.pump() 
@@ -149,25 +171,26 @@ def input():
                 direction = 'right' 
     return direction 
 
-def update(direction): 
-    ui.update() 
+def update(direction, clock): 
+    ui.update(clock) 
     actor_board[player.pos_index[0]][player.pos_index[1]] = 0 
     if can_move(player, direction): 
         player.move(direction) 
         move_board(direction) 
-    create_board(board_size) 
-
+    actor_board[player.pos_index[0]][player.pos_index[1]] = player 
+    
 def render(): 
     screen.fill(BLACK) 
-    draw_board(board_size) 
+    draw_board(VIEW_PORT) 
     ui.render(screen, GREEN, game_board, actor_board) 
     p.display.flip() 
     
+create_board(board_size) 
 clock = p.time.Clock() 
 done = False 
 while not done: 
     direction = input() 
-    update(direction) 
+    update(direction, clock) 
     render() 
     clock.tick(60) 
 

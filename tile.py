@@ -2,8 +2,6 @@ import pygame as p
 p.init() 
 
 ''' TODO ''' 
-# Add position to the class both in terms of array position and pixel position 
-# Make movement purely tile based, with pixel calculations going on in the background 
 # Add additional stats 
 # Implement support for tiles larger than 1x1 e.g. to support a fully grown tree that's 1x2 or a dragon that's 4x4 
 # Consider adding pointers to surrounding tiles for movement purposes 
@@ -24,6 +22,9 @@ class Tile():
     def __str__(self): 
         return self.name 
 
+    def move(self, SCREEN_OFFSET): 
+        self.pos_coordinates = self.pos_index[0]*self.tile_size+SCREEN_OFFSET[0], self.pos_index[1]*self.tile_size+SCREEN_OFFSET[1] 
+        
     def render(self, screen): 
         for i in self.sprite: 
             screen.blit(i, (self.pos_coordinates[0], self.pos_coordinates[1])) 

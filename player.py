@@ -33,4 +33,4 @@ class Player(Tile):
             self.pos_index[0] -= 1 
         if direction == 'right': 
             self.pos_index[0] += 1 
-        #self.pos_coordinates = self.pos_index[0]*self.tile_size+self.SCREEN_OFFSET[0], self.pos_index[1]*self.tile_size+self.SCREEN_OFFSET[1] 
+        
