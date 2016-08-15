@@ -13,6 +13,9 @@ class Player(Tile):
         self.id = 'player' 
         self.job = 'peasant' 
         self.name = 'A {0}'.format(self.job) 
+        self.alive = True if (self.hp > 0) else False 
+        self.is_walkable = walkable if not self.alive else False 
+
         self.mining = 1 
         self.smithing = 1 
         self.woodcutting = 1 
@@ -30,4 +33,4 @@ class Player(Tile):
             self.pos_index[0] -= 1 
         if direction == 'right': 
             self.pos_index[0] += 1 
-        self.pos_coordinates = self.pos_index[0]*self.tile_size+self.SCREEN_OFFSET[0], self.pos_index[1]*self.tile_size+self.SCREEN_OFFSET[1] 
+        #self.pos_coordinates = self.pos_index[0]*self.tile_size+self.SCREEN_OFFSET[0], self.pos_index[1]*self.tile_size+self.SCREEN_OFFSET[1] 

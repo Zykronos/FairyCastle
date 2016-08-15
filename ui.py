@@ -41,7 +41,7 @@ class UI():
             # Displays the cursor sprite on the tile the mouse is over 
             screen.blit(self.cursor, (game_board[self.mouse_index[0]][self.mouse_index[1]].pos_coordinates)) 
             # Display the position in the game board of the tile the mouse is over 
-            screen.blit(self.font.render(str(game_board[self.mouse_index[0]][self.mouse_index[1]].pos_index), 1, color), (self.ui_pos+120, 10)) 
+            screen.blit(self.font.render('(' + (str(game_board[self.mouse_index[0]][self.mouse_index[1]].pos_index[0])) + ', ' + (str(game_board[self.mouse_index[0]][self.mouse_index[1]].pos_index[1])) + ')', 1, color), (self.ui_pos+120, 10)) 
         else: 
             # If the mouse is not in the bounds of the game board 
             screen.blit(self.font.render('The ui', 1, color), (self.ui_pos, 40)) 

@@ -6,6 +6,8 @@ p.init()
 # Make movement purely tile based, with pixel calculations going on in the background 
 # Add additional stats 
 # Implement support for tiles larger than 1x1 e.g. to support a fully grown tree that's 1x2 or a dragon that's 4x4 
+# Consider adding pointers to surrounding tiles for movement purposes 
+
 
 class Tile(): 
     """ Every object in the game, from the floor to the walls to the player to the player's equipment is a Tile object """

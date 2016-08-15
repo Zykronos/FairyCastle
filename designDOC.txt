@@ -72,3 +72,30 @@ Tutorial
     Initial implementation as a text-only selection from the main menu 
     Add an optional quest-based tutorial later 
     
+Lore 
+    Based heavily on non-Abrahamic mythologies 
+        Germanic 
+        Norse 
+        Hellenic 
+        Egyptian 
+        Zoroastrian 
+
+Races 
+    Human 
+    Dwarf 
+    Elf 
+    Faerie 
+    Goblin 
+    Troll 
+    Giant 
+
+Classes 
+    Few base classes 
+        Warrior 
+        Mage 
+        Thief 
+        Arachnomancer 
+        etc. 
+    Classes the same between races / religions, but names are localised 
+        Goblin 
+            Mage = Shaman 
