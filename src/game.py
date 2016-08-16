@@ -31,7 +31,7 @@ SCREEN_CENTER = (window_width//2, window_height//2)
 SCREEN_OFFSET_1 = (window_width//2-144, window_height//2-144) 
 screen = p.display.set_mode(window_size) 
 # Number of tiles in the game board 
-board_size = board_width, board_height = 25, 25 
+board_size = board_width, board_height = 20, 20 
 # The game board holds all non-actor tiles, such as the floor and walls 
 game_board = [[0] * board_height for i in range(board_width)] 
 # The actor board holds all player characters and enemies 
@@ -99,35 +99,34 @@ def draw_board(VIEW_PORT):
     if player.pos_index[0]+VIEW_PORT//2+1<=board_width and player.pos_index[1]+VIEW_PORT//2+1<=board_height: 
         for y in range(player.pos_index[1]-VIEW_PORT//2, player.pos_index[1]+VIEW_PORT//2+1): 
             for x in range(player.pos_index[0]-VIEW_PORT//2, player.pos_index[0]+VIEW_PORT//2+1): 
+                game_board[x][y].move(SCREEN_OFFSET) 
                 can_draw(game_board[x][y]) 
                 can_draw(actor_board[x][y]) 
     elif player.pos_index[0]+VIEW_PORT//2+1>board_width and player.pos_index[1]+VIEW_PORT//2+1<=board_height: 
         for y in range(player.pos_index[1]-VIEW_PORT//2, player.pos_index[1]+VIEW_PORT//2+1): 
             for x in range(player.pos_index[0]-VIEW_PORT//2, board_width): 
+                game_board[x][y].move(SCREEN_OFFSET) 
                 can_draw(game_board[x][y]) 
                 can_draw(actor_board[x][y]) 
     elif player.pos_index[1]+VIEW_PORT//2+1>board_height and player.pos_index[0]+VIEW_PORT//2+1<=board_width: 
         for y in range(player.pos_index[1]-VIEW_PORT//2, board_height): 
             for x in range(player.pos_index[0]-VIEW_PORT//2, player.pos_index[0]+VIEW_PORT//2+1): 
+                game_board[x][y].move(SCREEN_OFFSET) 
                 can_draw(game_board[x][y]) 
                 can_draw(actor_board[x][y]) 
     else: 
         for y in range(player.pos_index[1]-VIEW_PORT//2, board_height): 
             for x in range(player.pos_index[0]-VIEW_PORT//2, board_width): 
+                game_board[x][y].move(SCREEN_OFFSET) 
                 can_draw(game_board[x][y]) 
                 can_draw(actor_board[x][y]) 
 
 def can_draw(tile): 
     ''' Checks to see if an index in either game_board or actor_board is an actual tile, then displays it if it's within screen bounds '''
     if type(tile) != int: 
-        temp = tile 
-        temp.move(SCREEN_OFFSET)
-        if (temp.pos_coordinates[0] < ui.edge[0][0] and temp.pos_coordinates[0] >= -TILE_DIMENSION and temp.pos_coordinates[1] >= 0 and temp.pos_coordinates[1] < window_height): 
-                tile.move(SCREEN_OFFSET) 
+        if (tile.pos_coordinates[0] < ui.edge[0][0] and tile.pos_coordinates[0] >= -TILE_DIMENSION and tile.pos_coordinates[1] >= 0 and tile.pos_coordinates[1] < window_height): 
                 tile.render(screen) 
-        else: 
-            tile.render(screen) 
-
+        
 def can_move(tile, direction): 
     # Need to rework this function to handle movement checking more elegantly 
     if  direction == 'up': 
@@ -173,7 +172,7 @@ def input():
     return direction 
 
 def update(direction, clock): 
-    ui.update(clock) 
+    ui.update(clock, SCREEN_OFFSET) 
     actor_board[player.pos_index[0]][player.pos_index[1]] = 0 
     if can_move(player, direction): 
         player.move(direction) 
