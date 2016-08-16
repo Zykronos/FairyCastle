@@ -18,21 +18,22 @@ class UI():
         self.mouse_pos = 0 
         self.mouse_index = [0, 0] 
         self.fps_counter = 0 
-
+        
     def update(self, clock): 
         self.mouse_pos = (p.mouse.get_pos()[0]-self.SCREEN_OFFSET[0], p.mouse.get_pos()[1]-self.SCREEN_OFFSET[1]) 
+        self.mouse_index = self.mouse_pos[0]//self.tile_size, self.mouse_pos[1]//self.tile_size 
         self.fps_counter = clock.get_fps() 
 
     def render(self, screen, color, game_board, actor_board): 
+        # Draws the edge of the ui 
         p.draw.line(screen, color, self.edge[0], self.edge[1], 2) 
         # Displays the mouse position in pixel coordinates 
         screen.blit(self.font.render(str((self.mouse_pos[0]+self.SCREEN_OFFSET[0], self.mouse_pos[1]+self.SCREEN_OFFSET[1])), 1, color), (self.ui_pos, 10)) 
-        self.mouse_index = self.mouse_pos[0]//self.tile_size, self.mouse_pos[1]//self.tile_size 
-        self.mouse_pos = self.mouse_pos[0], self.mouse_pos[1] 
+        # Displays the fps counter 
         screen.blit(self.font.render("fps: " + str('{:.2f}'.format(self.fps_counter)), 1, color), (self.ui_pos+60, 400)) 
-    
+        
         # Check to see if mouse is within bounds of the game board 
-        if self.mouse_pos[0] > 0 and self.mouse_pos[0] < self.board_size[0] and self.mouse_pos[1] > 0 and self.mouse_pos[1] < self.board_size[1]: 
+        if (self.mouse_pos[0] > 0 and self.mouse_pos[0] < self.board_size[0] and self.mouse_pos[1] > 0 and self.mouse_pos[1] < self.board_size[1]) and self.mouse_pos[0] < self.edge[0][0]: 
             # If it is, check to see what type of tile the mouse is over 
             if type(actor_board[self.mouse_index[0]][self.mouse_index[1]]) != int: 
                 # If the tile is an actor, display the tile information in the ui 

@@ -31,7 +31,7 @@ SCREEN_CENTER = (window_width//2, window_height//2)
 SCREEN_OFFSET_1 = (window_width//2-144, window_height//2-144) 
 screen = p.display.set_mode(window_size) 
 # Number of tiles in the game board 
-board_size = board_width, board_height = 100, 100 
+board_size = board_width, board_height = 25, 25 
 # The game board holds all non-actor tiles, such as the floor and walls 
 game_board = [[0] * board_height for i in range(board_width)] 
 # The actor board holds all player characters and enemies 
@@ -58,8 +58,8 @@ for i in sprites:
     sprites[i] = p.transform.scale(sprites[i], (TILE_DIMENSION, TILE_DIMENSION)) 
 
 # vvvv Temp code for testing player drawing vvvv 
-charPos = (75, 75)#(board_width//4, board_height//4) 
-SCREEN_OFFSET = [SCREEN_CENTER[0]-charPos[0]*TILE_DIMENSION-4*TILE_DIMENSION, SCREEN_CENTER[1]-charPos[1]*TILE_DIMENSION] 
+charPos = (10, 10)#(board_width//4, board_height//4) 
+SCREEN_OFFSET = [SCREEN_CENTER[0]-charPos[0]*TILE_DIMENSION-4*TILE_DIMENSION+32, SCREEN_CENTER[1]-charPos[1]*TILE_DIMENSION] 
 # ^^^^ Temp code for testing player drawing ^^^^ 
 player = Player([sprites['player']], charPos, TILE_DIMENSION, SCREEN_OFFSET) 
 #goblin = Goblin([sprites['goblin'], sprites['barb_outfit'], sprites['jester_hat']], (board_width//2, board_width//2), TILE_DIMENSION, SCREEN_OFFSET) 
