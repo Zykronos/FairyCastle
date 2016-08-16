@@ -5,6 +5,7 @@ from tile import *
 from ui import * 
 from player import * 
 from goblin import * 
+from spriteLoader import * 
 
 p.init() 
 p.display.set_caption('Fairy Castle') 
@@ -36,7 +37,6 @@ board_size = board_width, board_height = 20, 20
 game_board = [[0] * board_height for i in range(board_width)] 
 # The actor board holds all player characters and enemies 
 actor_board = [[0] * board_height for i in range(board_width)] 
-
 # sprite loading will become increasing excessive as more sprites are added.  Need to figure out a way to clean this up in order to handle 100+ sprites.  Hopefully loading from sprite sheet will help 
 sprites = dict(stoneWall=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneWall.bmp')).convert(), 
             stoneWallHori=p.image.load(os.path.join('..', 'assets', 'environment', 'stoneWallHori.bmp')).convert(), 
@@ -51,17 +51,25 @@ sprites = dict(stoneWall=p.image.load(os.path.join('..', 'assets', 'environment'
             green_shirt=p.image.load(os.path.join('..', 'assets', 'actors', 'greenShirt.bmp')).convert(), 
             jester_hat=p.image.load(os.path.join('..', 'assets', 'actors', 'jesterHat.bmp')).convert(), 
             barb_outfit=p.image.load(os.path.join('..', 'assets', 'actors', 'barbarianOutfit.bmp')).convert(), 
-            cursor=p.image.load(os.path.join('..', 'assets', '1/cursor.bmp')).convert())
+            cursor=p.image.load(os.path.join('..', 'assets', '1/cursor.bmp')).convert(), 
+            sheet=p.image.load(os.path.join('..', 'assets', '1/spriteSheet.png')).convert()) 
 # Goes through each sprite and sets a certain color to be transparent and scales it to the appropriate dimensions 
 for i in sprites: 
     sprites[i].set_colorkey(TRANS) 
-    sprites[i] = p.transform.scale(sprites[i], (TILE_DIMENSION, TILE_DIMENSION)) 
+    if i != 'sheet': 
+        sprites[i] = p.transform.scale(sprites[i], (TILE_DIMENSION, TILE_DIMENSION)) 
+
+t = [0]*(15*3)
+sprite_loader = Sprite(sprites['sheet'], (0, 0), 16, 1, 15, 3) 
+for i in range(15*3): 
+    t[i] = sprite_loader.sprite(i) 
+    t[i] = p.transform.scale(t[i], (TILE_DIMENSION, TILE_DIMENSION)) 
 
 # vvvv Temp code for testing player drawing vvvv 
 charPos = (10, 10)#(board_width//4, board_height//4) 
 SCREEN_OFFSET = [SCREEN_CENTER[0]-charPos[0]*TILE_DIMENSION-4*TILE_DIMENSION+32, SCREEN_CENTER[1]-charPos[1]*TILE_DIMENSION] 
 # ^^^^ Temp code for testing player drawing ^^^^ 
-player = Player([sprites['player']], charPos, TILE_DIMENSION, SCREEN_OFFSET) 
+player = Player([t[3]], charPos, TILE_DIMENSION, SCREEN_OFFSET) 
 #goblin = Goblin([sprites['goblin'], sprites['barb_outfit'], sprites['jester_hat']], (board_width//2, board_width//2), TILE_DIMENSION, SCREEN_OFFSET) 
 ui = UI(window_size, board_size, 32, TILE_DIMENSION, SCREEN_OFFSET, sprites['cursor'])
 
@@ -69,29 +77,26 @@ def create_board(board_size):
     ''' Creates the game board, initializing floor and wall tiles in game_board and players and enemies in actor_board '''
     for y in range(board_height): 
         for x in range(board_width): 
-            if x == 0 and y == 0: 
-                game_board[x][y] = Tile([sprites['stoneWallCornerTL']], (x, 
+            if x == 0 and y == 0: # top left 
+                game_board[x][y] = Tile([t[15*2+2]], (x, 
                 y), TILE_DIMENSION, SCREEN_OFFSET, 'A wall', False) 
-            elif x == board_width-1 and y == 0: 
-                game_board[x][y] = Tile([sprites['stoneWallCornerTR']], (x, 
+            elif x == board_width-1 and y == 0: # top right 
+                game_board[x][y] = Tile([t[15*2+3]], (x, 
                 y), TILE_DIMENSION, SCREEN_OFFSET, 'A wall', False) 
-            elif x == 0 and y == board_height-1: 
-                game_board[x][y] = Tile([sprites['stoneWallCornerBL']], (x, 
+            elif x == 0 and y == board_height-1: # bottom left 
+                game_board[x][y] = Tile([t[15*2+5]], (x, 
                 y), TILE_DIMENSION, SCREEN_OFFSET, 'A wall', False) 
-            elif x == board_width-1 and y == board_height-1: 
-                game_board[x][y] = Tile([sprites['stoneWallCornerBR']], (x, 
+            elif x == board_width-1 and y == board_height-1: # bottom right 
+                game_board[x][y] = Tile([t[15*2+4]], (x, 
                 y), TILE_DIMENSION, SCREEN_OFFSET, 'A wall', False) 
-            elif y == 0 or y == board_height-1: 
-                game_board[x][y] = Tile([sprites['stoneWallHori']], (x, 
+            elif y == 0 or y == board_height-1: # horizontal wall 
+                game_board[x][y] = Tile([t[15*2+1]], (x, 
                 y), TILE_DIMENSION, SCREEN_OFFSET, 'A wall', False) 
-            elif x == 0 or x == board_width-1: 
-                game_board[x][y] = Tile([sprites['stoneWallVert']], (x, 
+            elif x == 0 or x == board_width-1: # vertical wall 
+                game_board[x][y] = Tile([t[15*2]], (x, 
                 y), TILE_DIMENSION, SCREEN_OFFSET, 'A wall', False)
-            elif x == 0 or x == board_width-1 or y == 0 or y == board_height-1: 
-                game_board[x][y] = Tile([sprites['stoneWall']], (x, 
-                y), TILE_DIMENSION, SCREEN_OFFSET, 'A wall', False) 
-            else: 
-                game_board[x][y] = Tile([sprites['stoneFloor']], (x, y), TILE_DIMENSION, SCREEN_OFFSET, 'The floor') 
+            else: # floor 
+                game_board[x][y] = Tile([t[15*2+6]], (x, y), TILE_DIMENSION, SCREEN_OFFSET, 'The floor') 
     actor_board[player.pos_index[0]][player.pos_index[1]] = player 
     
     
