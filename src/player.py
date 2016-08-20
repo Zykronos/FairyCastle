@@ -4,6 +4,8 @@ p.init()
 
 ''' TODO ''' 
 # Add combat method once appropriate stats are added to Tile class 
+# Use distance formula for enemy ai i.e. once the player's within a certain range of the enemy, the enemy starts moving toward the player 
+# can_move should be here rather than in game.py.  This will allow enemies to move without a lot of extra code 
 
 class Player(Tile): 
     def __init__(self, sprite, pos, tile_size, name='A tile', walkable=True): 
@@ -15,6 +17,7 @@ class Player(Tile):
         self.name = 'A {0}'.format(self.job) 
         self.alive = True if (self.hp > 0) else False 
         self.is_walkable = walkable if not self.alive else False 
+        self.vision = 8 
 
         self.mining = 1 
         self.smithing = 1 

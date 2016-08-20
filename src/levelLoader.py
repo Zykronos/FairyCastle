@@ -5,6 +5,7 @@ from goblin import *
 
 ''' TODO '''
 # Move most of the load functions functionality to functions in game.py 
+# In fact levelLoader probably shouldn't exist, load should just be a function in game.py 
 # Won't load level_2.txt, probably because it's too small 
 
 class LevelLoader(object): 
@@ -37,13 +38,13 @@ class LevelLoader(object):
                 if lines[y][x] == '#': 
                     self.game_board[x][y] = Tile([self.environmentSprites[5][4]], (x, y), TILE_DIMENSION, 'A wall', False) 
                 elif lines[y][x] == '.': 
-                    self.game_board[x][y] = Tile([self.environmentSprites[0][6]], (x, y), TILE_DIMENSION, 'The floor') 
+                    self.game_board[x][y] = Tile([self.environmentSprites[3][6]], (x, y), TILE_DIMENSION, 'The floor') 
                 elif lines[y][x] == '@': 
-                    self.game_board[x][y] = Tile([self.environmentSprites[0][6]], (x, y), TILE_DIMENSION, 'The floor') 
+                    self.game_board[x][y] = Tile([self.environmentSprites[3][6]], (x, y), TILE_DIMENSION, 'The floor') 
                     self.player = Player([self.actorSprites[0][0]], (x, y), TILE_DIMENSION) 
                     self.actor_board[x][y] =  self.player 
                 elif lines[y][x] == 'g': 
-                    self.game_board[x][y] = Tile([self.environmentSprites[0][6]], (x, y), TILE_DIMENSION, 'The floor') 
+                    self.game_board[x][y] = Tile([self.environmentSprites[3][6]], (x, y), TILE_DIMENSION, 'The floor') 
                     self.actor_board[x][y] = Goblin([self.actorSprites[1][0]], (x, y), TILE_DIMENSION) 
                 elif lines[y][x] == '~': 
                     self.game_board[x][y] = Tile([self.environmentSprites[1][1]], (x, y), TILE_DIMENSION, 'Some water', False) 

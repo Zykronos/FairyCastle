@@ -4,6 +4,7 @@ p.init()
 ''' TODO ''' 
 # Display more information on the tile that the mouse is on, such as entity stats, class, equipment, etc. 
 # Fix cursor position 
+# Consider moving all cursor code outside of ui.  One fix might be to make the cursor a tile in its own ui_board to make determining the position of things easier 
 
 class UI(): 
     ''' Holds all information relating to the ui '''

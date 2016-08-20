@@ -13,8 +13,6 @@ p.display.set_caption('Fairy Castle')
 
 ''' TODO ''' 
 # Add comments 
-# Implement level reader to load levels from external text files 
-# Implement Sprite() class to manage sprite loading (e.g. loading sprites from sprite sheets) 
 # Make code cleaner 
 # Reconsider having game_board and actor_board be separate 
 # Add heartbeat code 
@@ -26,7 +24,6 @@ GREEN = (0, 255, 0)
 
 SCALE = 3 
 TILE_DIMENSION = 16*SCALE 
-VIEW_PORT = 20 
 window_size = window_width, window_height = 1280, 960 
 SCREEN_CENTER = (window_width//2, window_height//2) 
 screen = p.display.set_mode(window_size) 
@@ -39,33 +36,19 @@ actor_board = [[0] * board_height for i in range(board_width)]
 sprites = dict(actorSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 'actorSpriteSheet6x6.png')).convert(), 
             environmentSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 'environmentSpriteSheet15x8.png')).convert(), 
             itemSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 'itemSpriteSheet6x6.png')).convert()) 
-levels = dict(level_t=os.path.join('..', 'levels', 'level_t.txt')) 
+levels = dict(level_t=os.path.join('..', 'levels', 'level_1.txt')) 
 # Goes through each sprite and sets a certain color to be transparent and scales it to the appropriate dimensions 
 for i in sprites: 
     sprites[i].set_colorkey(TRANS) 
     
-# Splits the sprite sheet into individual sprites and adds them to t.  Indices of t correlate to positions in the sprite sheet 
-actor_sprite_sheet = [[0] * 6 for x in range(6)]
-sprite_loader = Sprite(sprites['actorSheet'], (0, 0), 16, 1, 6, 6) 
-for y in range(6): 
-    for x in range(6): 
-        actor_sprite_sheet[x][y] = sprite_loader.sprite(x, y) 
-        actor_sprite_sheet[x][y] = p.transform.scale(actor_sprite_sheet[x][y], (TILE_DIMENSION, TILE_DIMENSION)) 
-environment_sprite_sheet = [[0] * 8 for x in range(15)]
-sprite_loader = Sprite(sprites['environmentSheet'], (0, 0), 16, 1, 15, 8) 
-for y in range(8): 
-    for x in range(15): 
-        environment_sprite_sheet[x][y] = sprite_loader.sprite(x, y) 
-        environment_sprite_sheet[x][y] = p.transform.scale(environment_sprite_sheet[x][y], (TILE_DIMENSION, TILE_DIMENSION)) 
-item_sprite_sheet = [[0] * 6 for x in range(6)]
-sprite_loader = Sprite(sprites['itemSheet'], (0, 0), 16, 1, 6, 6) 
-for y in range(6): 
-    for x in range(6): 
-        item_sprite_sheet[x][y] = sprite_loader.sprite(x, y) 
-        item_sprite_sheet[x][y] = p.transform.scale(item_sprite_sheet[x][y], (TILE_DIMENSION, TILE_DIMENSION)) 
+# Splits the sprite sheet into individual sprites 
+actor_sprite_sheet = Sprite(sprites['actorSheet'], TILE_DIMENSION, (0, 0), 16, 1, 6, 6).sprites 
+environment_sprite_sheet = Sprite(sprites['environmentSheet'], TILE_DIMENSION, (0, 0), 16, 1, 15, 8).sprites 
+item_sprite_sheet = Sprite(sprites['itemSheet'], TILE_DIMENSION, (0, 0), 16, 1, 6, 6).sprites 
 
 level = LevelLoader(levels['level_t'], window_size, actor_sprite_sheet, environment_sprite_sheet, item_sprite_sheet) 
 level.load(TILE_DIMENSION) 
+
 player = level.player 
 game_board = level.game_board 
 actor_board = level.actor_board 
@@ -112,50 +95,36 @@ def create_board(board_width, board_height):
             if type(actor_board[x][y]) != int: 
                 actor_board[x][y].update(SCREEN_OFFSET) 
 
-def draw_board(VIEW_PORT): 
-    if player.pos_index[0]+VIEW_PORT//2+1<=board_width and player.pos_index[1]+VIEW_PORT//2+1<=board_height: 
-        for y in range(player.pos_index[1]-VIEW_PORT//2, player.pos_index[1]+VIEW_PORT//2+1): 
-            for x in range(player.pos_index[0]-VIEW_PORT//2, player.pos_index[0]+VIEW_PORT//2+1): 
-                if type(game_board[x][y]) != int: 
-                    game_board[x][y].update(SCREEN_OFFSET) 
-                    can_draw(game_board[x][y]) 
-                if type(actor_board[x][y]) != int: 
-                    actor_board[x][y].update(SCREEN_OFFSET) 
-                    can_draw(actor_board[x][y]) 
-    elif player.pos_index[0]+VIEW_PORT//2+1>board_width and player.pos_index[1]+VIEW_PORT//2+1<=board_height: 
-        for y in range(player.pos_index[1]-VIEW_PORT//2, player.pos_index[1]+VIEW_PORT//2+1): 
-            for x in range(player.pos_index[0]-VIEW_PORT//2, board_width): 
-                if type(game_board[x][y]) != int: 
-                    game_board[x][y].update(SCREEN_OFFSET) 
-                    can_draw(game_board[x][y]) 
-                if type(actor_board[x][y]) != int: 
-                    actor_board[x][y].update(SCREEN_OFFSET) 
-                    can_draw(actor_board[x][y]) 
-    elif player.pos_index[1]+VIEW_PORT//2+1>board_height and player.pos_index[0]+VIEW_PORT//2+1<=board_width: 
-        for y in range(player.pos_index[1]-VIEW_PORT//2, board_height): 
-            for x in range(player.pos_index[0]-VIEW_PORT//2, player.pos_index[0]+VIEW_PORT//2+1): 
-                if type(game_board[x][y]) != int: 
-                    game_board[x][y].update(SCREEN_OFFSET) 
-                    can_draw(game_board[x][y]) 
-                if type(actor_board[x][y]) != int: 
-                    actor_board[x][y].update(SCREEN_OFFSET) 
-                    can_draw(actor_board[x][y]) 
+def draw_board(player): 
+    if player.pos_index[0]+player.vision//2+1<=board_width and player.pos_index[1]+player.vision//2+1<=board_height: 
+        for y in range(player.pos_index[1]-player.vision//2, player.pos_index[1]+player.vision//2+1): 
+            for x in range(player.pos_index[0]-player.vision//2, player.pos_index[0]+player.vision//2+1): 
+                can_draw(game_board[x][y]) 
+                can_draw(actor_board[x][y]) 
+    elif player.pos_index[0]+player.vision//2+1>board_width and player.pos_index[1]+player.vision//2+1<=board_height: 
+        for y in range(player.pos_index[1]-player.vision//2, player.pos_index[1]+player.vision//2+1): 
+            for x in range(player.pos_index[0]-player.vision//2, board_width): 
+                can_draw(game_board[x][y]) 
+                can_draw(actor_board[x][y]) 
+    elif player.pos_index[1]+player.vision//2+1>board_height and player.pos_index[0]+player.vision//2+1<=board_width: 
+        for y in range(player.pos_index[1]-player.vision//2, board_height): 
+            for x in range(player.pos_index[0]-player.vision//2, player.pos_index[0]+player.vision//2+1): 
+                can_draw(game_board[x][y]) 
+                can_draw(actor_board[x][y]) 
     else: 
-        for y in range(player.pos_index[1]-VIEW_PORT//2, board_height): 
-            for x in range(player.pos_index[0]-VIEW_PORT//2, board_width): 
-                if type(game_board[x][y]) != int: 
-                    game_board[x][y].update(SCREEN_OFFSET) 
-                    can_draw(game_board[x][y]) 
-                if type(actor_board[x][y]) != int: 
-                    actor_board[x][y].update(SCREEN_OFFSET) 
-                    can_draw(actor_board[x][y]) 
+        for y in range(player.pos_index[1]-player.vision//2, board_height): 
+            for x in range(player.pos_index[0]-player.vision//2, board_width): 
+                can_draw(game_board[x][y]) 
+                can_draw(actor_board[x][y]) 
 
 def can_draw(tile): 
     ''' Checks to see if an index in either game_board or actor_board is an actual tile, then displays it if it's within screen bounds '''
     if type(tile) != int: 
+        tile.update(SCREEN_OFFSET) 
         if (tile.pos_coordinates[0] < ui.edge[0][0] and tile.pos_coordinates[0] >= -TILE_DIMENSION and tile.pos_coordinates[1] >= 0 and tile.pos_coordinates[1] < window_height): 
                 tile.render(screen) 
         
+# Should be moved to player class 
 def can_move(tile, direction): 
     # Need to rework this function to handle movement checking more elegantly 
     if  direction == 'up': 
@@ -167,17 +136,17 @@ def can_move(tile, direction):
         if type(actor_board[tile.pos_index[0]][tile.pos_index[1] + 1]) != int: 
             return game_board[tile.pos_index[0]][tile.pos_index[1] + 1].is_walkable and actor_board[tile.pos_index[0]][tile.pos_index[1] + 1].is_walkable 
         else: 
-            return  game_board[tile.pos_index[0]][tile.pos_index[1] + 1].is_walkable 
+            return game_board[tile.pos_index[0]][tile.pos_index[1] + 1].is_walkable 
     if  direction == 'left': 
         if type(actor_board[tile.pos_index[0] - 1][tile.pos_index[1]]) != int: 
             return game_board[tile.pos_index[0] - 1][tile.pos_index[1]].is_walkable and actor_board[tile.pos_index[0] - 1][tile.pos_index[1]].is_walkable 
         else: 
-            return  game_board[tile.pos_index[0] - 1][tile.pos_index[1]].is_walkable 
+            return game_board[tile.pos_index[0] - 1][tile.pos_index[1]].is_walkable 
     if  direction == 'right': 
         if type(actor_board[tile.pos_index[0] + 1][tile.pos_index[1]]) != int: 
             return game_board[tile.pos_index[0] + 1][tile.pos_index[1]].is_walkable and actor_board[tile.pos_index[0] + 1][tile.pos_index[1]].is_walkable 
         else: 
-            return  game_board[tile.pos_index[0] + 1][tile.pos_index[1]].is_walkable 
+            return game_board[tile.pos_index[0] + 1][tile.pos_index[1]].is_walkable 
     
 def move_board(direction): 
     global SCREEN_OFFSET 
@@ -219,7 +188,7 @@ def update(direction, clock):
     
 def render(): 
     screen.fill(BLACK) 
-    draw_board(VIEW_PORT) 
+    draw_board(player) 
     ui.render(screen, GREEN, game_board, actor_board) 
     p.display.flip() 
     
