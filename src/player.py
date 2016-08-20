@@ -11,7 +11,7 @@ class Player(Tile):
     def __init__(self, sprite, pos, tile_size, name='A tile', walkable=True): 
         super().__init__(sprite, pos, tile_size, name, walkable) 
         self.hp = 8 
-        self.mp = 0 
+        self.lives = 1 
         self.id = 'player' 
         self.job = 'peasant' 
         self.name = 'A {0}'.format(self.job) 
@@ -25,7 +25,9 @@ class Player(Tile):
         self.farming = 1 
         self.melee = 1 
         self.archery = 1 
+        self.magic = 1 
         self.fletching = 1 
+        self.runecrafting = 1 
 
     def move(self, direction): 
         if direction == 'up': 

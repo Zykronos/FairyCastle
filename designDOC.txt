@@ -1,3 +1,5 @@
+Medieval -> Steampunk -> Cyberpunk 
+Anglo-Saxon / Norse / Roman / Egyptian history / lore mixed with magic 
 Inspirations: 
     Dwarf Fortress, Civilization, Runescape, Megaman 
     Dwarf Fortress 
@@ -11,33 +13,58 @@ Inspirations:
     Runescape 
         Each individual character has different skills: 
             Mining 
-                lvl1 = Copper 
-                lvl5 = Bronze 
-                lvl10 = Iron 
+                Used to gather stone, different metals for melee equipment and arrow tips, and rune stones for runecrafting 
+                Tier 1 = Copper, Stone 
+                Tier 2 = Iron 
+                Tier 3 = Steel 
+                Tier 4 = Mithril 
+                Tier 5 = Adamantium, Obsidian 
             Smithing 
+                Used to craft melee weapons, plate armors, chain shirts, and arrow tips 
+                Tier 1 = Copper 
+                Tier 2 = Iron 
+                Tier 3 = Steel 
+                Tier 4 = Mithril 
+                Tier 5 = Adamantium 
             Farming 
-                lvl1 = Potatoes 
-                lvl5 = Flax 
+                Tier 1 = Potatoes 
+                Tier 2 = Flax 
             Crafting 
             Fishing 
             Cooking 
             Woodcutting 
-                lvl1 = Logs 
-                lvl5 = Oak 
+                Used to gather wood for archery equipment, wands, and other crafting items 
+                Tier 1 = Logs 
+                Tier 2 = Oak 
             Fletching 
-                lvl1 = Arrows 
-                lvl5 = Bows 
+                Used to craft archery equipment and wands 
+                Tier 1 = Copper Arrows, Log Bow 
+                Tier 2 = Iron Arrows, Oak Bow 
+                Tier 3 = Steel Arrows 
+                Tier 4 = Mithril Arrows 
+                Tier 5 = Adamantium Arrows 
             Melee 
+                Determines melee accuracy and tier of melee equipment that can be used 
             Archery 
+                Determines ranged accuracy and tier of archery equipment that can be used 
             Magic 
-                Based on runes 
-                Requires a medium inscribed with runes / implanted with runic stones to cast 
-                Summoning? 
+                Runestones possibly made from conductive materials that medieval people don't completely understand, but can eventually be used to create computer chips or similar 
+                Determines tier of spell that can be used 
+                Tier 1 = Bolt spells (single target) 
+                Tier 2 = Ball spells (small aoe) 
+                Tier 3 = Cloud spells (persistent aoe) 
+                Attaching a specific runestone to a wand allows a limited number of casts of the specific spell before the wand breaks down and must be replaced 
+                Higher tier spells get fewer casts per wand 
+                Summoning 
                     Beasts of burden, temporary peasants 
-                    Requires a rune stone, which attracts fairies / spirits / valkyries to control the construct 
+                    Requires a rune stone attached to a vessel, which attracts fairies / spirits / valkyries to control the construct 
                 Shapeshifting? 
-            Defense 
-        Character's unlock new crafting items by increasing their levels 
+            Runecrafting 
+                Used to craft runestones used to enchant equipment and attach to vessels for summoning 
+                Basic runestones can be used to give minor, permanent buffs to equipment 
+                Obsidian runestones can be used to stronger, temporary buffs 
+
+        Characters unlock new crafting items by increasing their levels 
             e.g. Farming level 1 for potatoes, Farming level 5 for wheat, etc. 
     Megaman 
         In Adventure mode, the game world will consist of various 'levels' connected to each other through locked doors 
