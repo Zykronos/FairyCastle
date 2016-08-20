@@ -48,7 +48,9 @@ class LevelLoader(object):
                     self.actor_board[x][y] = Goblin([self.actorSprites[1][0]], (x, y), TILE_DIMENSION) 
                 elif lines[y][x] == '~': 
                     self.game_board[x][y] = Tile([self.environmentSprites[1][1]], (x, y), TILE_DIMENSION, 'Some water', False) 
+                elif lines[y][x] == '|': 
+                    self.game_board[x][y] = Tile([self.environmentSprites[2][7]], (x, y), TILE_DIMENSION, 'A door', True) 
                 else: 
-                    self.game_board[x][y] = Tile([self.environmentSprites[0][0]], (x, y), TILE_DIMENSION, 'Temp Empty') 
+                    self.game_board[x][y] = Tile([self.environmentSprites[1][6]], (x, y), TILE_DIMENSION, 'Temp Empty') 
         
         f.close() 

@@ -17,7 +17,8 @@ class Tile():
         self.is_walkable = walkable 
         self.name = name 
         self.id = 'tile' 
-
+        self.hp = 0 
+        
     def __str__(self): 
         return self.name 
 

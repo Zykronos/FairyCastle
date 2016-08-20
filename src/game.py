@@ -1,6 +1,7 @@
 import pygame as p 
 import sys 
 import os 
+
 from tile import * 
 from ui import * 
 from player import * 
@@ -21,6 +22,7 @@ p.display.set_caption('Fairy Castle')
 TRANS = (128, 0, 128) 
 BLACK = (0, 0, 0) 
 GREEN = (0, 255, 0) 
+GRAY  = (16, 16, 16) 
 
 SCALE = 3 
 TILE_DIMENSION = 16*SCALE 
@@ -33,20 +35,27 @@ board_size = board_width, board_height = 20, 20
 game_board = [[0] * board_height for i in range(board_width)] 
 # The actor board holds all player characters and enemies 
 actor_board = [[0] * board_height for i in range(board_width)] 
-sprites = dict(actorSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 'actorSpriteSheet6x6.png')).convert(), 
-            environmentSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 'environmentSpriteSheet15x8.png')).convert(), 
-            itemSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 'itemSpriteSheet6x6.png')).convert()) 
+sprites = dict(actorSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
+                                                    'actorSpriteSheet6x6.png')).convert(), 
+                environmentSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
+                                                    'environmentSpriteSheet15x8.png')).convert(), 
+                itemSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
+                                                    'itemSpriteSheet6x6.png')).convert()) 
 levels = dict(level_t=os.path.join('..', 'levels', 'level_1.txt')) 
 # Goes through each sprite and sets a certain color to be transparent and scales it to the appropriate dimensions 
 for i in sprites: 
     sprites[i].set_colorkey(TRANS) 
     
 # Splits the sprite sheet into individual sprites 
-actor_sprite_sheet = Sprite(sprites['actorSheet'], TILE_DIMENSION, (0, 0), 16, 1, 6, 6).sprites 
-environment_sprite_sheet = Sprite(sprites['environmentSheet'], TILE_DIMENSION, (0, 0), 16, 1, 15, 8).sprites 
-item_sprite_sheet = Sprite(sprites['itemSheet'], TILE_DIMENSION, (0, 0), 16, 1, 6, 6).sprites 
+actor_sprite_sheet = SpriteLoader(sprites['actorSheet'], TILE_DIMENSION, (0, 0), 
+                                    16, 1, 6, 6).sprites 
+environment_sprite_sheet = SpriteLoader(sprites['environmentSheet'], TILE_DIMENSION, (0, 0), 
+                                    16, 1, 15, 8).sprites 
+item_sprite_sheet = SpriteLoader(sprites['itemSheet'], TILE_DIMENSION, (0, 0), 
+                                    16, 1, 6, 6).sprites 
 
-level = LevelLoader(levels['level_t'], window_size, actor_sprite_sheet, environment_sprite_sheet, item_sprite_sheet) 
+level = LevelLoader(levels['level_t'], window_size, actor_sprite_sheet, environment_sprite_sheet, 
+                    item_sprite_sheet) 
 level.load(TILE_DIMENSION) 
 
 player = level.player 
@@ -96,19 +105,26 @@ def create_board(board_width, board_height):
                 actor_board[x][y].update(SCREEN_OFFSET) 
 
 def draw_board(player): 
-    if player.pos_index[0]+player.vision//2+1<=board_width and player.pos_index[1]+player.vision//2+1<=board_height: 
-        for y in range(player.pos_index[1]-player.vision//2, player.pos_index[1]+player.vision//2+1): 
-            for x in range(player.pos_index[0]-player.vision//2, player.pos_index[0]+player.vision//2+1): 
+    if (player.pos_index[0]+player.vision//2+1<=board_width 
+            and player.pos_index[1]+player.vision//2+1<=board_height): 
+        for y in range(player.pos_index[1]-player.vision//2, 
+                        player.pos_index[1]+player.vision//2+1): 
+            for x in range(player.pos_index[0]-player.vision//2, 
+                        player.pos_index[0]+player.vision//2+1): 
                 can_draw(game_board[x][y]) 
                 can_draw(actor_board[x][y]) 
-    elif player.pos_index[0]+player.vision//2+1>board_width and player.pos_index[1]+player.vision//2+1<=board_height: 
-        for y in range(player.pos_index[1]-player.vision//2, player.pos_index[1]+player.vision//2+1): 
+    elif (player.pos_index[0]+player.vision//2+1>board_width 
+            and player.pos_index[1]+player.vision//2+1<=board_height): 
+        for y in range(player.pos_index[1]-player.vision//2, 
+                        player.pos_index[1]+player.vision//2+1): 
             for x in range(player.pos_index[0]-player.vision//2, board_width): 
                 can_draw(game_board[x][y]) 
                 can_draw(actor_board[x][y]) 
-    elif player.pos_index[1]+player.vision//2+1>board_height and player.pos_index[0]+player.vision//2+1<=board_width: 
+    elif (player.pos_index[1]+player.vision//2+1>board_height 
+            and player.pos_index[0]+player.vision//2+1<=board_width): 
         for y in range(player.pos_index[1]-player.vision//2, board_height): 
-            for x in range(player.pos_index[0]-player.vision//2, player.pos_index[0]+player.vision//2+1): 
+            for x in range(player.pos_index[0]-player.vision//2, 
+                            player.pos_index[0]+player.vision//2+1): 
                 can_draw(game_board[x][y]) 
                 can_draw(actor_board[x][y]) 
     else: 
@@ -121,8 +137,11 @@ def can_draw(tile):
     ''' Checks to see if an index in either game_board or actor_board is an actual tile, then displays it if it's within screen bounds '''
     if type(tile) != int: 
         tile.update(SCREEN_OFFSET) 
-        if (tile.pos_coordinates[0] < ui.edge[0][0] and tile.pos_coordinates[0] >= -TILE_DIMENSION and tile.pos_coordinates[1] >= 0 and tile.pos_coordinates[1] < window_height): 
-                tile.render(screen) 
+        if (tile.pos_coordinates[0] < ui.edge[0][0] 
+                and tile.pos_coordinates[0] >= -TILE_DIMENSION 
+                and tile.pos_coordinates[1] >= 0 
+                and tile.pos_coordinates[1] < window_height): 
+            tile.render(screen) 
         
 # Should be moved to player class 
 def can_move(tile, direction): 
@@ -187,7 +206,7 @@ def update(direction, clock):
     actor_board[player.pos_index[0]][player.pos_index[1]] = player 
     
 def render(): 
-    screen.fill(BLACK) 
+    screen.fill(GRAY) 
     draw_board(player) 
     ui.render(screen, GREEN, game_board, actor_board) 
     p.display.flip() 

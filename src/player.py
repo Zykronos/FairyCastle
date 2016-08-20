@@ -17,7 +17,7 @@ class Player(Tile):
         self.name = 'A {0}'.format(self.job) 
         self.alive = True if (self.hp > 0) else False 
         self.is_walkable = walkable if not self.alive else False 
-        self.vision = 8 
+        self.vision = 30 
 
         self.mining = 1 
         self.smithing = 1 

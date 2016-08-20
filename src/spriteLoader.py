@@ -1,6 +1,6 @@
 import pygame as p 
 
-class Sprite(object):
+class SpriteLoader(object):
     ''' Loads a tile sheet and returns a specified number of sprites ''' 
     def __init__(self, sheet, TILE_DIMENSION, start, size, margin, col, rows=1): 
         self.sprites = [[0]*rows for x in range(col)] 
