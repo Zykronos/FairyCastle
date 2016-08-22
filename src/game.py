@@ -11,6 +11,7 @@ from levelLoader import *
 
 p.init() 
 p.display.set_caption('Fairy Castle') 
+VER = '0.10.10' 
 
 ''' TODO ''' 
 # Add comments 
@@ -30,18 +31,18 @@ window_size = window_width, window_height = 1280, 960
 SCREEN_CENTER = (window_width//2, window_height//2) 
 screen = p.display.set_mode(window_size) 
 # Number of tiles in the game board 
-board_size = board_width, board_height = 20, 20 
+#board_size = board_width, board_height = 20, 20 
 # The game board holds all non-actor tiles, such as the floor and walls 
-game_board = [[0] * board_height for i in range(board_width)] 
+#game_board = [[0] * board_height for i in range(board_width)] 
 # The actor board holds all player characters and enemies 
-actor_board = [[0] * board_height for i in range(board_width)] 
+#actor_board = [[0] * board_height for i in range(board_width)] 
 sprites = dict(actorSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
                                                     'actorSpriteSheet6x6.png')).convert(), 
                 environmentSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
                                                     'environmentSpriteSheet15x8.png')).convert(), 
                 itemSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
                                                     'itemSpriteSheet6x6.png')).convert()) 
-levels = dict(level_t=os.path.join('..', 'levels', 'level_1.txt')) 
+levels = dict(level_t=os.path.join('..', 'levels', 'level_2.txt')) 
 # Goes through each sprite and sets a certain color to be transparent and scales it to the appropriate dimensions 
 for i in sprites: 
     sprites[i].set_colorkey(TRANS) 
@@ -68,8 +69,46 @@ enemies = level.enemies
 # Offsets the game board by a certain amount 
 SCREEN_OFFSET = [SCREEN_CENTER[0]-player.pos_index[0]*TILE_DIMENSION-4*TILE_DIMENSION+32, SCREEN_CENTER[1]-player.pos_index[1]*TILE_DIMENSION] 
 player.pos_coordinates = SCREEN_OFFSET 
-ui = UI(window_size, board_size, 32, TILE_DIMENSION, SCREEN_OFFSET, actor_sprite_sheet[0][1])
+ui = UI(window_size, (board_width, board_height), 32, TILE_DIMENSION, SCREEN_OFFSET, actor_sprite_sheet[0][1])
 
+def reload_level(): 
+    """ 
+    Temp function for debugging 
+    Reloads and redraws everything without needing to restart the program 
+    """ 
+    
+    global sprites, levels, actor_sprite_sheet, environment_sprite_sheet, item_sprite_sheet, level, player, game_board, actor_board, board_width, board_height, enemies, SCREEN_OFFSET, SCREEN_CENTER, player 
+    sprites = dict(actorSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
+                                                    'actorSpriteSheet6x6.png')).convert(), 
+                environmentSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
+                                                    'environmentSpriteSheet15x8.png')).convert(), 
+                itemSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
+                                                    'itemSpriteSheet6x6.png')).convert()) 
+    levels = dict(level_t=os.path.join('..', 'levels', 'level_2.txt')) 
+    for i in sprites: 
+        sprites[i].set_colorkey(TRANS) 
+
+    actor_sprite_sheet = SpriteLoader(sprites['actorSheet'], TILE_DIMENSION, (0, 0), 
+                                    16, 1, 6, 6).sprites 
+    environment_sprite_sheet = SpriteLoader(sprites['environmentSheet'], TILE_DIMENSION, (0, 0), 
+                                        16, 1, 15, 8).sprites 
+    item_sprite_sheet = SpriteLoader(sprites['itemSheet'], TILE_DIMENSION, (0, 0), 
+                                        16, 1, 6, 6).sprites 
+
+    level = LevelLoader(levels['level_t'], window_size, actor_sprite_sheet, environment_sprite_sheet, 
+                        item_sprite_sheet) 
+    level.load(TILE_DIMENSION) 
+
+    player = level.player 
+    game_board = level.game_board 
+    actor_board = level.actor_board 
+    board_width = level.board_width 
+    board_height = level.board_height 
+    enemies = level.enemies 
+    SCREEN_OFFSET = [SCREEN_CENTER[0]-player.pos_index[0]*TILE_DIMENSION-4*TILE_DIMENSION+32, SCREEN_CENTER[1]-player.pos_index[1]*TILE_DIMENSION] 
+    player.pos_coordinates = SCREEN_OFFSET 
+    create_board(board_width, board_height) 
+    
 def create_board1(board_size): 
     ''' Creates the game board, initializing floor and wall tiles in game_board and players and enemies in actor_board '''
     for y in range(board_height): 
@@ -195,6 +234,8 @@ def input():
                 direction = 'left' 
             if e.key == p.K_RIGHT: 
                 direction = 'right' 
+            if e.key == p.K_SPACE: 
+                direction = 'reload' 
     return direction 
 
 def update(direction, clock): 
@@ -216,7 +257,10 @@ clock = p.time.Clock()
 done = False 
 while not done: 
     direction = input() 
-    update(direction, clock) 
+    if direction == 'reload': 
+        reload_level() 
+    else: 
+        update(direction, clock) 
     render() 
     clock.tick(60) 
 

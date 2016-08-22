@@ -24,7 +24,7 @@ class UI():
     def update(self, clock, SCREEN_OFFSET): 
         self.SCREEN_OFFSET = SCREEN_OFFSET[0], SCREEN_OFFSET[1] 
         self.mouse_pos = (p.mouse.get_pos()[0], p.mouse.get_pos()[1]) 
-        self.mouse_index = self.mouse_pos[0]//self.tile_size, self.mouse_pos[1]//self.tile_size 
+        #self.mouse_index = self.mouse_pos[0]//self.tile_size, self.mouse_pos[1]//self.tile_size 
         self.fps_counter = clock.get_fps() 
 
     def render(self, screen, color, game_board, actor_board): 
@@ -46,7 +46,7 @@ class UI():
                 # If the tile isn't an actor, just display the floor information 
                 screen.blit(self.font.render(str(game_board[self.mouse_index[0]][self.mouse_index[1]]), 1, color), (self.ui_pos, 40)) 
             # Displays the cursor sprite on the tile the mouse is over 
-            screen.blit(self.cursor, (game_board[self.mouse_index[0]][self.mouse_index[1]].pos_coordinates[0]-self.SCREEN_OFFSET[0], game_board[self.mouse_index[0]][self.mouse_index[1]].pos_coordinates[1]-self.SCREEN_OFFSET[1])) 
+            #screen.blit(self.cursor, (game_board[self.mouse_index[0]][self.mouse_index[1]].pos_coordinates[0]-self.SCREEN_OFFSET[0], game_board[self.mouse_index[0]][self.mouse_index[1]].pos_coordinates[1]-self.SCREEN_OFFSET[1])) 
             # Display the position in the game board of the tile the mouse is over 
             screen.blit(self.font.render('(' + (str(game_board[self.mouse_index[0]][self.mouse_index[1]].pos_index[0])) + ', ' + (str(game_board[self.mouse_index[0]][self.mouse_index[1]].pos_index[1])) + ')', 1, color), (self.ui_pos+120, 10)) 
         else: 

@@ -36,7 +36,7 @@ class LevelLoader(object):
         for y in range(self.board_height): 
             for x in range(self.board_width): 
                 if lines[y][x] == '#': 
-                    self.game_board[x][y] = Tile([self.environmentSprites[5][4]], (x, y), TILE_DIMENSION, 'A wall', False) 
+                    self.game_board[x][y] = Tile([self.environmentSprites[6][6]], (x, y), TILE_DIMENSION, 'A wall', False) 
                 elif lines[y][x] == '.': 
                     self.game_board[x][y] = Tile([self.environmentSprites[3][6]], (x, y), TILE_DIMENSION, 'The floor') 
                 elif lines[y][x] == '@': 
