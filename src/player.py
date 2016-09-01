@@ -6,6 +6,8 @@ p.init()
 # Add combat method once appropriate stats are added to Tile class 
 # Use distance formula for enemy ai i.e. once the player's within a certain range of the enemy, the enemy starts moving toward the player 
 # can_move should be here rather than in game.py.  This will allow enemies to move without a lot of extra code 
+# Raycasting for vision?  Send out a number of rays from the player to determine vision in a better manner than just using a large square area.  Raycasting would prevent vision from piercing walls, and would lead to more realistic vision in hallways 
+
 
 class Player(Tile): 
     def __init__(self, sprite, pos, tile_size, name='A tile', walkable=True): 
@@ -17,7 +19,7 @@ class Player(Tile):
         self.name = 'A {0}'.format(self.job) 
         self.alive = True if (self.hp > 0) else False 
         self.is_walkable = walkable if not self.alive else False 
-        self.vision = 30 
+        self.vision = 40 
 
         self.mining = 1 
         self.smithing = 1 

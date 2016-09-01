@@ -4,8 +4,6 @@ from player import *
 from goblin import * 
 
 ''' TODO '''
-# Move most of the load functions functionality to functions in game.py 
-# In fact levelLoader probably shouldn't exist, load should just be a function in game.py 
 # Won't load level_2.txt, probably because it's too small 
 
 class LevelLoader(object): 
@@ -36,12 +34,12 @@ class LevelLoader(object):
         for y in range(self.board_height): 
             for x in range(self.board_width): 
                 if lines[y][x] == '#': 
-                    self.game_board[x][y] = Tile([self.environmentSprites[6][6]], (x, y), TILE_DIMENSION, 'A wall', False) 
+                    self.game_board[x][y] = Tile([self.environmentSprites[1][4]], (x, y), TILE_DIMENSION, 'A wall', False) 
                 elif lines[y][x] == '.': 
                     self.game_board[x][y] = Tile([self.environmentSprites[3][6]], (x, y), TILE_DIMENSION, 'The floor') 
                 elif lines[y][x] == '@': 
                     self.game_board[x][y] = Tile([self.environmentSprites[3][6]], (x, y), TILE_DIMENSION, 'The floor') 
-                    self.player = Player([self.actorSprites[0][0]], (x, y), TILE_DIMENSION) 
+                    self.player = Player([self.actorSprites[0][0], self.itemSprites[4][1], self.itemSprites[4][2], self.itemSprites[4][3]], (x, y), TILE_DIMENSION) 
                     self.actor_board[x][y] =  self.player 
                 elif lines[y][x] == 'g': 
                     self.game_board[x][y] = Tile([self.environmentSprites[3][6]], (x, y), TILE_DIMENSION, 'The floor') 
@@ -50,6 +48,14 @@ class LevelLoader(object):
                     self.game_board[x][y] = Tile([self.environmentSprites[1][1]], (x, y), TILE_DIMENSION, 'Some water', False) 
                 elif lines[y][x] == '|': 
                     self.game_board[x][y] = Tile([self.environmentSprites[2][7]], (x, y), TILE_DIMENSION, 'A door', True) 
+                elif lines[y][x] == '!': 
+                    self.game_board[x][y] = Tile([self.environmentSprites[3][6], self.itemSprites[0][6]], (x, y), TILE_DIMENSION, 'A potion', True) 
+                elif lines[y][x] == '>': 
+                    self.game_board[x][y] = Tile([self.environmentSprites[3][6], self.environmentSprites[0][7]], (x, y), TILE_DIMENSION, 'A way down', True) 
+                elif lines[y][x] == '0': 
+                    self.game_board[x][y] = Tile([self.environmentSprites[3][6], self.itemSprites[1][7]], (x, y), TILE_DIMENSION, 'A closed barrel', True) 
+                elif lines[y][x] == '1': 
+                    self.game_board[x][y] = Tile([self.itemSprites[3][7]], (x, y), TILE_DIMENSION, 'An unopened crate', True) 
                 else: 
                     self.game_board[x][y] = Tile([self.environmentSprites[1][6]], (x, y), TILE_DIMENSION, 'Temp Empty') 
         

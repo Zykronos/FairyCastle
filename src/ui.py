@@ -45,10 +45,16 @@ class UI():
             else: 
                 # If the tile isn't an actor, just display the floor information 
                 screen.blit(self.font.render(str(game_board[self.mouse_index[0]][self.mouse_index[1]]), 1, color), (self.ui_pos, 40)) 
-            # Displays the cursor sprite on the tile the mouse is over 
-            #screen.blit(self.cursor, (game_board[self.mouse_index[0]][self.mouse_index[1]].pos_coordinates[0]-self.SCREEN_OFFSET[0], game_board[self.mouse_index[0]][self.mouse_index[1]].pos_coordinates[1]-self.SCREEN_OFFSET[1])) 
+            # draw_cursor(screen, game_board) 
             # Display the position in the game board of the tile the mouse is over 
             screen.blit(self.font.render('(' + (str(game_board[self.mouse_index[0]][self.mouse_index[1]].pos_index[0])) + ', ' + (str(game_board[self.mouse_index[0]][self.mouse_index[1]].pos_index[1])) + ')', 1, color), (self.ui_pos+120, 10)) 
         else: 
             # If the mouse is not in the bounds of the game board 
             screen.blit(self.font.render('The ui', 1, color), (self.ui_pos, 40)) 
+
+    def draw_cursor(self, screen, game_board): 
+        # Get game_board index using cursor position, then draw cursor at game_board index position 
+
+        # Displays the cursor sprite on the tile the mouse is over 
+        #screen.blit(self.cursor, (game_board[self.mouse_index[0]][self.mouse_index[1]].pos_coordinates[0]-self.SCREEN_OFFSET[0], game_board[self.mouse_index[0]][self.mouse_index[1]].pos_coordinates[1]-self.SCREEN_OFFSET[1])) 
+        pass 

@@ -55,10 +55,29 @@ Inspirations:
                 Tier 3 = Cloud spells (persistent aoe) 
                 Attaching a specific runestone to a wand allows a limited number of casts of the specific spell before the wand breaks down and must be replaced 
                 Higher tier spells get fewer casts per wand 
+                All equipment can be enchanted with various runes, giving different effects 
+                    Swords and arrows enchanted with elemental runes deal elemental damage and can cast special abilities 
+                    Gauntlets can be enchanted to work as weaker, longer lasting wands 
+                        Enchanted gauntlets can be used to temporarily enchant equipped weapons and cast simple attack spells 
+                    Other equipment (helm, chest, legs, boots, shield, bow) get other abilities 
+                        e.g. A helm enchanted with lightning gives increases vision range, boots enchanted with lightning give increased move speed, etc. 
                 Summoning 
                     Beasts of burden, temporary peasants 
                     Requires a rune stone attached to a vessel, which attracts fairies / spirits / valkyries to control the construct 
                 Shapeshifting? 
+                Different elements give penalties to the caster while buffing the caster's ability in that element 
+                    Fire 
+                        As player casts fire spells, they build up stacks of heat 
+                        As heat stacks, the player moves faster and deals more fire damage 
+                        At max stacks, the caster is lit on fire, taking heavy dot 
+                    Ice 
+                        Similar to fire, the caster stacks chill 
+                        Chill causes the caster to move slower, deal more ice damage, and causes enemies in range to move slower 
+                        At max stacks, the player is frozen, completely immobilized and resistant to some types of damage 
+                    Lightning 
+                    Earth 
+                    Life 
+
             Runecrafting 
                 Used to craft runestones used to enchant equipment and attach to vessels for summoning 
                 Basic runestones can be used to give minor, permanent buffs to equipment 

@@ -10,8 +10,9 @@ from spriteLoader import *
 from levelLoader import * 
 
 p.init() 
-p.display.set_caption('Fairy Castle') 
-VER = '0.10.10' 
+# Version #.  Release.mainBranch.testBranch 
+VER =           '0.10.11' 
+p.display.set_caption('Fairy Castle' + ', version:  ' + VER) 
 
 ''' TODO ''' 
 # Add comments 
@@ -25,8 +26,8 @@ BLACK = (0, 0, 0)
 GREEN = (0, 255, 0) 
 GRAY  = (16, 16, 16) 
 
-SCALE = 3 
-TILE_DIMENSION = 16*SCALE 
+SCALE = 2 
+TILE_DIMENSION = int(16*SCALE) 
 window_size = window_width, window_height = 1280, 960 
 SCREEN_CENTER = (window_width//2, window_height//2) 
 screen = p.display.set_mode(window_size) 
@@ -37,23 +38,23 @@ screen = p.display.set_mode(window_size)
 # The actor board holds all player characters and enemies 
 #actor_board = [[0] * board_height for i in range(board_width)] 
 sprites = dict(actorSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
-                                                    'actorSpriteSheet6x6.png')).convert(), 
+                                                    'actorSpriteSheet8x6.png')).convert(), 
                 environmentSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
                                                     'environmentSpriteSheet15x8.png')).convert(), 
                 itemSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
-                                                    'itemSpriteSheet6x6.png')).convert()) 
-levels = dict(level_t=os.path.join('..', 'levels', 'level_2.txt')) 
+                                                    'itemSpriteSheet12x8.png')).convert()) 
+levels = dict(level_t=os.path.join('..', 'levels', 'level_1.txt')) 
 # Goes through each sprite and sets a certain color to be transparent and scales it to the appropriate dimensions 
 for i in sprites: 
     sprites[i].set_colorkey(TRANS) 
     
 # Splits the sprite sheet into individual sprites 
 actor_sprite_sheet = SpriteLoader(sprites['actorSheet'], TILE_DIMENSION, (0, 0), 
-                                    16, 1, 6, 6).sprites 
+                                    16, 1, 8, 6).sprites 
 environment_sprite_sheet = SpriteLoader(sprites['environmentSheet'], TILE_DIMENSION, (0, 0), 
                                     16, 1, 15, 8).sprites 
 item_sprite_sheet = SpriteLoader(sprites['itemSheet'], TILE_DIMENSION, (0, 0), 
-                                    16, 1, 6, 6).sprites 
+                                    16, 1, 12, 8).sprites 
 
 level = LevelLoader(levels['level_t'], window_size, actor_sprite_sheet, environment_sprite_sheet, 
                     item_sprite_sheet) 
@@ -76,7 +77,7 @@ def reload_level():
     Temp function for debugging 
     Reloads and redraws everything without needing to restart the program 
     """ 
-    
+
     global sprites, levels, actor_sprite_sheet, environment_sprite_sheet, item_sprite_sheet, level, player, game_board, actor_board, board_width, board_height, enemies, SCREEN_OFFSET, SCREEN_CENTER, player 
     sprites = dict(actorSheet=p.image.load(os.path.join('..', 'assets', 'spriteSheets', 
                                                     'actorSpriteSheet6x6.png')).convert(), 
@@ -108,7 +109,8 @@ def reload_level():
     SCREEN_OFFSET = [SCREEN_CENTER[0]-player.pos_index[0]*TILE_DIMENSION-4*TILE_DIMENSION+32, SCREEN_CENTER[1]-player.pos_index[1]*TILE_DIMENSION] 
     player.pos_coordinates = SCREEN_OFFSET 
     create_board(board_width, board_height) 
-    
+
+# Lines 113 through 184 should probably be moved to the levelLoader class 
 def create_board1(board_size): 
     ''' Creates the game board, initializing floor and wall tiles in game_board and players and enemies in actor_board '''
     for y in range(board_height): 
@@ -245,6 +247,8 @@ def update(direction, clock):
         player.move(direction) 
         move_board(direction) 
     actor_board[player.pos_index[0]][player.pos_index[1]] = player 
+    if game_board[player.pos_index[0]][player.pos_index[1]].name == 'A door': 
+         game_board[player.pos_index[0]][player.pos_index[1]].sprite == level.environmentSprites[0][0] 
     
 def render(): 
     screen.fill(GRAY) 
