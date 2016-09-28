@@ -89,7 +89,8 @@ Inspirations:
                             causing heavy damage over time to anyone that enters the area, including the player.
                             This area moves with the player.
                         Legs
-                            
+                            (A Leap? How would that mesh with Heat stacks increasing movement speed,
+                            or low morale routing enemies? How would it compare to Lightning's movement speed?)
                         Melee
                             Deals fire damage with fire damage over time.
                             Special is a ranged pull.
@@ -103,22 +104,23 @@ Inspirations:
                             
                         Torso
                             Inflicting Ice damage on a target builds up stacks of Chill
-                            As Chill increases, all nearby terrain is covered in frost,
+                            As Chill increases, all nearby terrain is covered in frost, becoming Chilled Terrain,
                             slowing the movement and attack speed of all nearby creatures over time.
-                            At max Chill, all nearby terrain is frozen,
+                            At max Chill, all nearby terrain is frozen, becoming Frozen Terrain,
                             causing anyone that enters the area to freeze.
                             This area moves with the player.
                         Legs
-                            
+                            All Frozen Terrain costs one movement point, regardless of its base cost.
+                            Water is now frozen when moved to.
                         Melee
                             
                         Shield
-                            
+                            Grants immunity to the slowing and freezing from Chilled and Frozen Terrain 
                         Bow
                            
                     Storm
                         Helmet
-                            
+                            Increases vision range and removes vision range penalties from low light.
                         Torso
                             Inflicting lightning damage on a target builds up stacks of Charge
                             As Charge increases, movement speed increases immensely,
@@ -127,9 +129,11 @@ Inspirations:
                                 On the second attack, attack speed slows to a quarter and damage quadruples.
                                 After several attacks, attack speed slows drastically to one attack every few turns,
                                 while lightning damage would increase to maintain the same amount of damage per turn.
-                            At max Charge, the player discharges. (And does what?)
+                            At max Charge, the player discharges.
+                            (And does what? A Storm cloud that obscures vision? Chain lightning? Both?)
                         Legs
-                            
+                            Increases Movement speed.
+                            All terrain costs one movement point, regardless of its base cost.
                         Melee
                             
                         Shield
@@ -139,13 +143,19 @@ Inspirations:
                                 they wander too far away 
                         Bow
                             
+                            Special is an infinite range and instant travel time arrow.
                     Earth
                         Helmet
-                            
+                            Enchanting a helmet with a life rune gives the player the ability to sense 
+                            living creatures in a certain range, even through walls 
+                                This doesn't give the player to actually see through walls (and see 
+                                everything in a blocked room), only to sense the enemies beyond the 
+                                walls 
                         Torso
                             
                         Legs
-                            
+                            Torso gives an aoe calm aura, causing hostile animals to not attack and 
+                        docile animals to not run 
                         Melee
                             
                         Shield
@@ -180,17 +190,8 @@ Inspirations:
                                 in addition to their elemental specialization.
                             Tower
                             Support
-                Shapeshifting? 
-                    Life 
-                        Gives non-combat effects 
-                        Enchanting a helmet with a life rune gives the player the ability to sense 
-                        living creatures in a certain range, even through walls 
-                            This doesn't give the player to actually see through walls (and see 
-                            everything in a blocked room), only to sense the enemies beyond the 
-                            walls 
-                        Torso gives an aoe calm aura, causing hostile animals to not attack and 
-                        docile animals to not run 
-                        
+                Shapeshifting?
+                
                 Enchanted weapons can be evoked to enter into a 'bankai' state, using a large 
                 number of charges to become much stronger 
                 Enchanting torso armors give aoe abilities relating to the element 
