@@ -65,20 +65,47 @@ Inspirations:
                     A wand made with a tier 1 rune can cast 10 bolts, while a wand with a tier 2 
                     rune can cast 20 bolts or 10 balls 
                     Up to a tier 5 runewand, which can cast 10 napalm spells, 20 explosions, 30 
-                    clouds, 40 balls, or 50 bolts 
-                All equipment can be enchanted with various runes, giving different effects 
-                    Swords and arrows enchanted with elemental runes deal elemental damage and can 
-                    cast special abilities 
+                    clouds, 40 balls, or 50 bolts.
+                Equipment
+                    All equipment can be enchanted with various runes, giving different effects.
+                    Melee weapons enchanted with elemental runes deal elemental damage and can 
+                    cast special abilities, ranged weapons apply these bonuses to their ammunition. 
                     Gauntlets can be enchanted to work as weaker, longer lasting wands 
                         Enchanted gauntlets can be used to temporarily enchant equipped weapons and 
                         cast simple attack spells 
                     Other equipment (helm, chest, legs, boots, shield, bow) get other abilities 
                         e.g. A helm enchanted with lightning gives increases vision range, boots 
-                        enchanted with lightning give increased move speed, etc. 
+                        enchanted with lightning give increased move speed, etc.
+                    Fire
+                        Helmet
+                            
+                        Torso
+                            
+                        Legs
+                            
+                        Melee
+                            
+                        Shield
+                            
+                        Bow
+                            
+                    Ice
+                    Storm
+                    Earth
+                    Life
                 Summoning 
-                    Beasts of burden, temporary peasants 
-                    Requires a rune stone attached to a vessel, which attracts fairies / spirits / 
-                    valkyries to control the construct 
+                        Enchanting an armor piece with a life rune allows the summoner to control a
+                        number of summons equal to the rune's tier.
+                            e.g. Enchanting both a helmet and torso with a T3 life rune gives three summons
+                            per armor piece, or 6 total.
+                        Summons are created by attaching a rune stone to a vessel,
+                        which attracts fairies / spirits / valkyries to control the construct.
+                        Summons come in several varieties:
+                            Utility
+                                All Utility summons have the physical ability of an unskilled character,
+                                in addition to their elemental specialization.
+                            Tower
+                            Support
                 Shapeshifting? 
                 
                 Different elements give penalties to the caster while buffing the caster's ability 
