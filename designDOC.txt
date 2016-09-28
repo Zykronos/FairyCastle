@@ -81,7 +81,7 @@ Inspirations:
                     enchanted equipment have penalties that are removed by other equipment of the same element.
                     Fire
                         Helmet
-                            Produces a fear aura effect, amplifying all morale damage done to all targets within range.
+                            Produces a fear aura effect, amplifying all morale damage done to all creatures within range.
                         Torso
                             Inflicting fire damage on a target builds up stacks of Heat
                             As Heat increases, movement speed, attack speed, and fire damage increases
@@ -102,10 +102,11 @@ Inspirations:
                         Helmet
                             
                         Torso
-                            Inflicting fire damage on a target builds up stacks of Heat
-                            As Heat increases, movement speed, attack speed, and fire damage increases
-                            At max Heat, all nearby terrain is lit on fire,
-                            causing heavy damage over time to anyone that enters the area, including the player.
+                            Inflicting Ice damage on a target builds up stacks of Chill
+                            As Chill increases, all nearby terrain is covered in frost,
+                            slowing the movement and attack speed of all nearby creatures over time.
+                            At max Chill, all nearby terrain is frozen,
+                            causing anyone that enters the area to freeze.
                             This area moves with the player.
                         Legs
                             
@@ -125,11 +126,14 @@ Inspirations:
                         Helmet
                             
                         Torso
-                            Inflicting fire damage on a target builds up stacks of Heat
-                            As Heat increases, movement speed, attack speed, and fire damage increases
-                            At max Heat, all nearby terrain is lit on fire,
-                            causing heavy damage over time to anyone that enters the area, including the player.
-                            This area moves with the player.
+                            Inflicting lightning damage on a target builds up stacks of Charge
+                            As Charge increases, movement speed increases immensely,
+                            while attack speed slows and lightning damage increases by an inverse of each other.
+                                e.g. On the first attack, attack speed slows to half and damage doubles.
+                                On the second attack, attack speed slows to a quarter and damage quadruples.
+                                After several attacks, attack speed slows drastically to one attack every few turns,
+                                while lightning damage would increase to maintain the same amount of damage per turn.
+                            At max Charge, the player discharges. (And does what?)
                         Legs
                             
                         Melee
@@ -281,3 +285,7 @@ Classes
     Classes the same between races / religions, but names are localised 
         Goblin 
             Mage = Shaman 
+Mechanics
+    Sequential turns
+    Little to no in combat healing
+    No in combat summoning
