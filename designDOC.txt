@@ -91,13 +91,13 @@ Inspirations:
                         Legs
                             
                         Melee
-                            
+                            Deals fire damage with fire damage over time.
+                            Special is a ranged pull.
                         Shield
-                            
+                            Grants immunity to morale damage from fire.
                         Bow
-                           
-                        Wand
-                            
+                           Sets arrows on fire.
+                           Special is an explosive arrow.
                     Ice
                         Helmet
                             
@@ -116,12 +116,6 @@ Inspirations:
                             
                         Bow
                            
-                        Wand
-                            Similar to fire, the caster stacks chill
-                            Chill causes the caster to move slower, deal more ice damage,
-                            and causes enemies in range to move slower
-                            At max stacks, the player is frozen,
-                            completely immobilized and resistant to some types of damage
                     Storm
                         Helmet
                             
@@ -145,8 +139,6 @@ Inspirations:
                                 they wander too far away 
                         Bow
                             
-                        Wand
-                            
                     Earth
                         Helmet
                             
@@ -160,8 +152,6 @@ Inspirations:
                             
                         Bow
                             
-                        Wand
-                            
                     Poison
                         Helmet
                             
@@ -174,8 +164,6 @@ Inspirations:
                         Shield
                             
                         Bow
-                            
-                        Wand
                             
                     Life
                         See Summoning
