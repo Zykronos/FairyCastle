@@ -19,7 +19,7 @@ class Player(Tile):
         self.name = 'A {0}'.format(self.job) 
         self.alive = True if (self.hp > 0) else False 
         self.is_walkable = walkable if not self.alive else False 
-        self.vision = 40 
+        self.vision = 5 
 
         self.mining = 1 
         self.smithing = 1 
@@ -41,3 +41,10 @@ class Player(Tile):
         if direction == 'right': 
             self.pos_index[0] += 1 
         
+    def attack(self, enemy): 
+        enemy.hp -= 5 
+    
+    def update(self, SCREEN_OFFSET): 
+        self.alive = False if (self.hp <= 0) else True 
+        self.pos_coordinates = self.pos_index[0]*self.tile_size+SCREEN_OFFSET[0], self.pos_index[1]*self.tile_size+SCREEN_OFFSET[1] 
+    

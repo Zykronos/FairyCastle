@@ -23,7 +23,7 @@ class LevelLoader(object):
         self.itemSprites = itemSprites 
         self.player = 0 
         self.enemies = [] 
-
+    
     def load(self, TILE_DIMENSION): 
         f = open(self.file) 
         lines = [line.rstrip('\n') for line in f] 

@@ -1,0 +1,18 @@
+Outline for planned Entity Component System 
+
+CombatSystem: 
+    damage(attacker, target) 
+        Attacker deals damage to target 
+    statsComponent: 
+        hp, mp 
+PhysicsSystem: 
+    positionComponent: 
+        position 
+
+    draw() 
+        Draws the entity to the screen 
+    open(obj) 
+        Change obj's sprite to its 'open' sprite 
+    close(obj) 
+        Change obj's sprite to its 'closed' sprite 
+    

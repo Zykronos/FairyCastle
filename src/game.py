@@ -11,14 +11,16 @@ from levelLoader import *
 
 p.init() 
 # Version #.  Release.mainBranch.testBranch 
-VER =           '0.10.11' 
-p.display.set_caption('Fairy Castle' + ', version:  ' + VER) 
+VER =           '0.10.12' 
+p.display.set_caption('Fairy Castle' + ',    version:  ' + VER) 
 
 ''' TODO ''' 
 # Add comments 
 # Make code cleaner 
 # Reconsider having game_board and actor_board be separate 
 # Add heartbeat code 
+# Add the ability for tiles to remember if they've been revealed by the player already seeing them. 
+# Revealed tiles would show up darker than tiles currently in the player's los 
 
 ''' Colors ''' 
 TRANS = (128, 0, 128) 
@@ -70,7 +72,7 @@ enemies = level.enemies
 # Offsets the game board by a certain amount 
 SCREEN_OFFSET = [SCREEN_CENTER[0]-player.pos_index[0]*TILE_DIMENSION-4*TILE_DIMENSION+32, SCREEN_CENTER[1]-player.pos_index[1]*TILE_DIMENSION] 
 player.pos_coordinates = SCREEN_OFFSET 
-ui = UI(window_size, (board_width, board_height), 32, TILE_DIMENSION, SCREEN_OFFSET, actor_sprite_sheet[0][1])
+ui = UI(window_size, (board_width, board_height), 32, TILE_DIMENSION, SCREEN_OFFSET, actor_sprite_sheet[0][1]) 
 
 def reload_level(): 
     """ 
@@ -187,22 +189,22 @@ def can_draw(tile):
 # Should be moved to player class 
 def can_move(tile, direction): 
     # Need to rework this function to handle movement checking more elegantly 
-    if  direction == 'up': 
+    if direction == 'up': 
         if type(actor_board[tile.pos_index[0]][tile.pos_index[1] - 1]) != int: 
             return game_board[tile.pos_index[0]][tile.pos_index[1] - 1].is_walkable and actor_board[tile.pos_index[0]][tile.pos_index[1] - 1].is_walkable 
         else: 
             return game_board[tile.pos_index[0]][tile.pos_index[1] - 1].is_walkable 
-    if  direction == 'down': 
+    if direction == 'down': 
         if type(actor_board[tile.pos_index[0]][tile.pos_index[1] + 1]) != int: 
             return game_board[tile.pos_index[0]][tile.pos_index[1] + 1].is_walkable and actor_board[tile.pos_index[0]][tile.pos_index[1] + 1].is_walkable 
         else: 
             return game_board[tile.pos_index[0]][tile.pos_index[1] + 1].is_walkable 
-    if  direction == 'left': 
+    if direction == 'left': 
         if type(actor_board[tile.pos_index[0] - 1][tile.pos_index[1]]) != int: 
             return game_board[tile.pos_index[0] - 1][tile.pos_index[1]].is_walkable and actor_board[tile.pos_index[0] - 1][tile.pos_index[1]].is_walkable 
         else: 
             return game_board[tile.pos_index[0] - 1][tile.pos_index[1]].is_walkable 
-    if  direction == 'right': 
+    if direction == 'right': 
         if type(actor_board[tile.pos_index[0] + 1][tile.pos_index[1]]) != int: 
             return game_board[tile.pos_index[0] + 1][tile.pos_index[1]].is_walkable and actor_board[tile.pos_index[0] + 1][tile.pos_index[1]].is_walkable 
         else: 
@@ -247,16 +249,16 @@ def update(direction, clock):
         player.move(direction) 
         move_board(direction) 
     actor_board[player.pos_index[0]][player.pos_index[1]] = player 
-    if game_board[player.pos_index[0]][player.pos_index[1]].name == 'A door': 
-         game_board[player.pos_index[0]][player.pos_index[1]].sprite == level.environmentSprites[0][0] 
     
 def render(): 
     screen.fill(GRAY) 
     draw_board(player) 
+    for i in range(4): 
+        p.draw.line(screen, GREEN, (player.pos_coordinates[0]+TILE_DIMENSION/2, player.pos_coordinates[1]+TILE_DIMENSION/2), (player.pos_coordinates[0]+player.vision*TILE_DIMENSION, player.pos_coordinates[1]+TILE_DIMENSION/2), 2) 
     ui.render(screen, GREEN, game_board, actor_board) 
     p.display.flip() 
     
-create_board(board_width, board_height) 
+#create_board(board_width, board_height) 
 clock = p.time.Clock() 
 done = False 
 while not done: 

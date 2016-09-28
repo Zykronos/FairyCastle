@@ -13,7 +13,8 @@ Inspirations:
     Runescape 
         Each individual character has different skills: 
             Mining 
-                Used to gather stone, different metals for melee equipment and arrow tips, and rune stones for runecrafting 
+                Used to gather stone, different metals for melee equipment and arrow tips, and rune 
+                stones for runecrafting 
                 Tier 1 = Copper, Stone 
                 Tier 2 = Iron 
                 Tier 3 = Steel 
@@ -48,49 +49,90 @@ Inspirations:
             Archery 
                 Determines ranged accuracy and tier of archery equipment that can be used 
             Magic 
-                Runestones possibly made from conductive materials that medieval people don't completely understand, but can eventually be used to create computer chips or similar 
+                Runestones possibly made from conductive materials that medieval people don't 
+                completely understand, but can eventually be used to create computer chips or 
+                similar 
                 Determines tier of spell that can be used 
                 Tier 1 = Bolt spells (single target) 
                 Tier 2 = Ball spells (small aoe) 
                 Tier 3 = Cloud spells (persistent aoe) 
-                Attaching a specific runestone to a wand allows a limited number of casts of the specific spell before the wand breaks down and must be replaced 
+                Tier 4 = Explosion spells (large aoe) 
+                Tier 5 = Napalm spells (large, persistent aoe) 
+                Attaching a specific runestone to a wand allows a limited number of casts of the 
+                specific spell before the wand breaks down and must be replaced 
                 Higher tier spells get fewer casts per wand 
+                    10 casts is the baseline number of casts 
+                    A wand made with a tier 1 rune can cast 10 bolts, while a wand with a tier 2 
+                    rune can cast 20 bolts or 10 balls 
+                    Up to a tier 5 runewand, which can cast 10 napalm spells, 20 explosions, 30 
+                    clouds, 40 balls, or 50 bolts 
                 All equipment can be enchanted with various runes, giving different effects 
-                    Swords and arrows enchanted with elemental runes deal elemental damage and can cast special abilities 
+                    Swords and arrows enchanted with elemental runes deal elemental damage and can 
+                    cast special abilities 
                     Gauntlets can be enchanted to work as weaker, longer lasting wands 
-                        Enchanted gauntlets can be used to temporarily enchant equipped weapons and cast simple attack spells 
+                        Enchanted gauntlets can be used to temporarily enchant equipped weapons and 
+                        cast simple attack spells 
                     Other equipment (helm, chest, legs, boots, shield, bow) get other abilities 
-                        e.g. A helm enchanted with lightning gives increases vision range, boots enchanted with lightning give increased move speed, etc. 
+                        e.g. A helm enchanted with lightning gives increases vision range, boots 
+                        enchanted with lightning give increased move speed, etc. 
                 Summoning 
                     Beasts of burden, temporary peasants 
-                    Requires a rune stone attached to a vessel, which attracts fairies / spirits / valkyries to control the construct 
+                    Requires a rune stone attached to a vessel, which attracts fairies / spirits / 
+                    valkyries to control the construct 
                 Shapeshifting? 
-                Different elements give penalties to the caster while buffing the caster's ability in that element 
+                
+                Different elements give penalties to the caster while buffing the caster's ability 
+                in that element 
                     Fire 
                         As player casts fire spells, they build up stacks of heat 
                         As heat stacks, the player moves faster and deals more fire damage 
                         At max stacks, the caster is lit on fire, taking heavy dot 
                     Ice 
                         Similar to fire, the caster stacks chill 
-                        Chill causes the caster to move slower, deal more ice damage, and causes enemies in range to move slower 
-                        At max stacks, the player is frozen, completely immobilized and resistant to some types of damage 
+                        Chill causes the caster to move slower, deal more ice damage, and causes 
+                        enemies in range to move slower 
+                        At max stacks, the player is frozen, completely immobilized and resistant 
+                        to some types of damage 
                     Lightning 
+                        Enchanting a shield with lightning emanates a bubble shield in a small aoe 
+                        around the player.  
+                            Allies near the player become shielded, but they lose the shield if 
+                            they wander too far away 
                     Earth 
                     Life 
+                        Gives non-combat effects 
+                        Enchanting a helmet with a life rune gives the player the ability to sense 
+                        living creatures in a certain range, even through walls 
+                            This doesn't give the player to actually see through walls (and see 
+                            everything in a blocked room), only to sense the enemies beyond the 
+                            walls 
+                        Torso gives an aoe calm aura, causing hostile animals to not attack and 
+                        docile animals to not run 
+                        
+                Enchanted weapons can be evoked to enter into a 'bankai' state, using a large 
+                number of charges to become much stronger 
+                Enchanting torso armors give aoe abilities relating to the element 
+                    Fire gives and aoe burn effect 
+                Enchanting multiple armor pieces with the same element gives a set bonus 
 
             Runecrafting 
-                Used to craft runestones used to enchant equipment and attach to vessels for summoning 
+                Used to craft runestones used to enchant equipment and attach to vessels for 
+                summoning 
                 Basic runestones can be used to give minor, permanent buffs to equipment 
                 Obsidian runestones can be used to stronger, temporary buffs 
+                SPIRIT GRENADES 
+                    Single-use summons that explode when thrown, having various effects 
 
         Characters unlock new crafting items by increasing their levels 
             e.g. Farming level 1 for potatoes, Farming level 5 for wheat, etc. 
     Megaman 
-        In Adventure mode, the game world will consist of various 'levels' connected to each other through locked doors 
+        In Adventure mode, the game world will consist of various 'levels' connected to each other 
+        through locked doors 
         Player must defeat bosses to unlock certain doors and progress through the game 
         Defeating bosses unlocks special powers 
         Boss order possibly nonlinear 
-            i.e. player can fight bosses in any order, but must defeat all of them before moving on to the final gauntlet ('Sigma stages') 
+            i.e. player can fight bosses in any order, but must defeat all of them before moving on 
+            to the final gauntlet ('Sigma stages') 
 Tiles-as-objects: 
     Every tile, from the floor to the player to item pickups, is its own object 
     Basic tile attributes include location, sprite, layer, walkability 
@@ -101,18 +143,22 @@ Unity-style layering:
     Each tile given a layer, then drawn according to its layer 
         e.g. 'actors' drawn in front of 'ground' 
 Game Modes: 
-    Campaign and Castle modes will use Runescape-style skills, while Roguelike mode will be more traditionally class-based (e.g. Warrior, Mage, Thief, etc.) 
+    Campaign and Castle modes will use Runescape-style skills, while Roguelike mode will be more 
+    traditionally class-based (e.g. Warrior, Mage, Thief, etc.) 
     Campaign Mode: 
         Story-based, nonrandomized open-world campain 
         Game board is split into different 'levels'; large areas ending with a boss fight 
-            Each level is connected to the others, so players can go through levels and fight bosses in a nonlinear way 
+            Each level is connected to the others, so players can go through levels and fight 
+            bosses in a nonlinear way 
     Roguelike Mode: 
         Randomized levels connect to the others through stairs 
         One life; player must restart from the beginning when they die 
     Castle Mode: 
         Dwarf Fortress style strategy game 
-        Player controls various units and must build up their city, building workshops, farms, and other buildings 
-        Eventual intention to be more like Civilization, where the player creates an empire rather than a singular castle 
+        Player controls various units and must build up their city, building workshops, farms, and 
+        other buildings 
+        Eventual intention to be more like Civilization, where the player creates an empire rather 
+        than a singular castle 
 
 Tutorial 
     Initial implementation as a text-only selection from the main menu 
