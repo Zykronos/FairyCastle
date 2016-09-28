@@ -82,6 +82,7 @@ Inspirations:
                     Fire
                         Helmet
                             Produces a fear aura effect, amplifying all morale damage done to all creatures within range.
+                            Morale damage is based on health damage taken.
                         Torso
                             Inflicting fire damage on a target builds up stacks of Heat
                             As Heat increases, movement speed, attack speed, and fire damage increases
@@ -130,7 +131,7 @@ Inspirations:
                                 After several attacks, attack speed slows drastically to one attack every few turns,
                                 while lightning damage would increase to maintain the same amount of damage per turn.
                             At max Charge, the player discharges.
-                            (And does what? A Storm cloud that obscures vision? Chain lightning? Both?)
+                            (And does what? A Storm cloud that obscures vision? Chain lightning? Both? Nothing?)
                         Legs
                             Increases Movement speed.
                             All terrain costs one movement point, regardless of its base cost.
@@ -146,22 +147,25 @@ Inspirations:
                             Special is an infinite range and instant travel time arrow.
                     Earth
                         Helmet
-                            Enchanting a helmet with a life rune gives the player the ability to sense 
-                            living creatures in a certain range, even through walls 
-                                This doesn't give the player to actually see through walls (and see 
-                                everything in a blocked room), only to sense the enemies beyond the 
-                                walls 
+                            Allows living creatures within range to be seen, even through walls.
                         Torso
-                            
+                            Grants an amount of Damage Threshold (DT), Damage Resistance (DR), and Morale Resistance (MR).
+                            Taking damage builds up stacks of Protection.
+                                Simply getting hit is not enough.
+                                This damage must pass through both the DT and DR to count.
+                                Morale damage is based on health damage taken.
+                            As Protection increases, the armor's base Damage Threshold and Damage Resistance increases.
+                            At max Protection. (What happens? Anything at all?)
                         Legs
-                            Torso gives an aoe calm aura, causing hostile animals to not attack and 
-                        docile animals to not run 
+                            Grants the ability to burrow through the ground.
+                            While underground, hostile animals to not attack and docile animals to not run.
                         Melee
                             
                         Shield
-                            
+                            Takes a fraction of all nearby allies' damage and applies it to the player.
                         Bow
                             
+                            Special is an arrow that can be shot through walls.
                     Poison
                         Helmet
                             
@@ -278,3 +282,5 @@ Mechanics
     Sequential turns
     Little to no in combat healing
     No in combat summoning
+    Elemental Counters
+        Ice > Lightning > Earth > Fire > Ice
