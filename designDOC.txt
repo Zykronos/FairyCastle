@@ -138,10 +138,12 @@ Inspirations:
                         Melee
                             
                         Shield
-                            Enchanting a shield with lightning emanates a bubble shield in a small aoe 
+                            (What would a high speed, high damage rune set that specializes in Hit and Run attacks
+                            need a shield for?)
+                            (Enchanting a shield with lightning emanates a bubble shield in a small aoe 
                             around the player.  
                                 Allies near the player become shielded, but they lose the shield if 
-                                they wander too far away 
+                                they wander too far away)
                         Bow
                             
                             Special is an infinite range and instant travel time arrow.
@@ -163,6 +165,7 @@ Inspirations:
                             
                         Shield
                             Takes a fraction of all nearby allies' damage and applies it to the player.
+                            Only works while above ground.
                         Bow
                             
                             Special is an arrow that can be shot through walls.
@@ -188,12 +191,31 @@ Inspirations:
                             per armor piece, or 6 total.
                         Summons are created by attaching a rune stone to a vessel,
                         which attracts fairies / spirits / valkyries to control the construct.
+                        Any buffs or debuffs provided by a summon does not stack with that same type of summon,
+                        but does stack with the same buff or debuff from different sources.
+                            If someone is wearing both Storm Boots and a Storm Torso, while they're
+                            within range of both a Storm Tower and a Storm Support, then they gain a bonus to movement speed
+                            from all four sources.
                         Summons come in several varieties:
                             Utility
-                                All Utility summons have the physical ability of an unskilled character,
-                                in addition to their elemental specialization.
+                                All Utility summons have the physical ability of an unskilled character.
+                                A Utility Summon wears a lower powered version of its element's armor.
                             Tower
+                                A Tower summon can't move, but provides a large elemental bonus to an area.
+                                Fire
+                                    
+                                Ice
+                                    
+                                Storm
+                                    Increases the movement speed and vision range of all creatures in range.
+                                Earth
+                                    Grants an amount of DT, DR, and MR to creatures in range.
+                                Poison
+                                    
+                                Life
+                                    Maintains a number of summons equal to ten times the tier of life rune used.
                             Support
+                                A Support summon is a much weaker, but mobile, tower summon.
                 Shapeshifting?
                 
                 Enchanted weapons can be evoked to enter into a 'bankai' state, using a large 
