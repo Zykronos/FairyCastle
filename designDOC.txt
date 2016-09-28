@@ -198,7 +198,8 @@ Inspirations:
                             from all four sources.
                         Summons come in several varieties:
                             Utility
-                                All Utility summons have the physical ability of an unskilled character.
+                                All Utility summons have non combat skills equal to their rune tier.
+                                    e.g. A T3 Earth summon can mine T3 rocks and chop down T3 trees.
                                 A Utility Summon wears a lower powered version of its element's armor.
                             Tower
                                 A Tower summon can't move, but provides a large elemental bonus to an area.
