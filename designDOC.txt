@@ -90,9 +90,59 @@ Inspirations:
                         Bow
                             
                     Ice
+                        Helmet
+                            
+                        Torso
+                            
+                        Legs
+                            
+                        Melee
+                            
+                        Shield
+                            
+                        Bow
+                            
                     Storm
+                        Helmet
+                            
+                        Torso
+                            
+                        Legs
+                            
+                        Melee
+                            
+                        Shield
+                            
+                        Bow
+                            
                     Earth
+                        Helmet
+                            
+                        Torso
+                            
+                        Legs
+                            
+                        Melee
+                            
+                        Shield
+                            
+                        Bow
+                            
+                    Poison
+                        Helmet
+                            
+                        Torso
+                            
+                        Legs
+                            
+                        Melee
+                            
+                        Shield
+                            
+                        Bow
+                            
                     Life
+                        See Summoning
                 Summoning 
                         Enchanting an armor piece with a life rune allows the summoner to control a
                         number of summons equal to the rune's tier.
@@ -120,12 +170,13 @@ Inspirations:
                         enemies in range to move slower 
                         At max stacks, the player is frozen, completely immobilized and resistant 
                         to some types of damage 
-                    Lightning 
+                    Storm 
                         Enchanting a shield with lightning emanates a bubble shield in a small aoe 
                         around the player.  
                             Allies near the player become shielded, but they lose the shield if 
                             they wander too far away 
                     Earth 
+                    Poison
                     Life 
                         Gives non-combat effects 
                         Enchanting a helmet with a life rune gives the player the ability to sense 
