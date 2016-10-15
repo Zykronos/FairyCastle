@@ -80,9 +80,17 @@ Inspirations:
                     in that element, and to encourage synergy within an element,
                     enchanted equipment have penalties that are removed by other equipment of the same element.
                     Fire
+                        Set Bonus
+                            Two Piece
+                                Produces a fear aura effect, amplifying all morale damage done to all creatures within range.
+                                Morale damage is based on health damage taken.
+                            Three Piece
+                                
+                            Full Set
+                                
                         Helmet
-                            Produces a fear aura effect, amplifying all morale damage done to all creatures within range.
-                            Morale damage is based on health damage taken.
+                            The wearer's vision includes the light from all tiles set on fire within range, even through walls.
+                            This includes torches, lava, and fire elementals.
                         Torso
                             Inflicting fire damage on a target builds up stacks of Heat
                             As Heat increases, movement speed, attack speed, and fire damage increases
@@ -90,8 +98,8 @@ Inspirations:
                             causing heavy damage over time to anyone that enters the area, including the player.
                             This area moves with the player.
                         Legs
-                            (A Leap? How would that mesh with Heat stacks increasing movement speed,
-                            or low morale routing enemies? How would it compare to Lightning's movement speed?)
+                            Teleport to any tile set on fire within range, even through walls.
+                            Torches explode when teleported to, setting fire to the surounding tiles and destroying the torch.
                         Melee
                             Deals fire damage with fire damage over time.
                             Special is a ranged pull.
@@ -101,6 +109,13 @@ Inspirations:
                            Sets arrows on fire.
                            Special is an explosive arrow.
                     Ice
+                        Set Bonus
+                            Two Piece
+                                
+                            Three Piece
+                                
+                            Full Set
+                                
                         Helmet
                             
                         Torso
@@ -120,6 +135,13 @@ Inspirations:
                         Bow
                            
                     Storm
+                        Set Bonus
+                            Two Piece
+                                
+                            Three Piece
+                                
+                            Full Set
+                                
                         Helmet
                             Increases vision range and removes vision range penalties from low light.
                         Torso
@@ -148,6 +170,13 @@ Inspirations:
                             
                             Special is an infinite range and instant travel time arrow.
                     Earth
+                        Set Bonus
+                            Two Piece
+                                
+                            Three Piece
+                                
+                            Full Set
+                                
                         Helmet
                             Allows living creatures within range to be seen, even through walls.
                         Torso
@@ -170,6 +199,13 @@ Inspirations:
                             
                             Special is an arrow that can be shot through walls.
                     Poison
+                        Set Bonus
+                            Two Piece
+                                
+                            Three Piece
+                                
+                            Full Set
+                                
                         Helmet
                             
                         Torso
