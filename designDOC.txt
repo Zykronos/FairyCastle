@@ -137,15 +137,16 @@ Inspirations:
                     Storm
                         Set Bonus
                             Two Piece
-                                
+                                Increases Movement speed.
+                                All terrain costs one movement point, regardless of its base cost.
                             Three Piece
                                 
                             Full Set
-                                
+                                Each kill resets the attack speed timer, allowing the wearer to attack again.
                         Helmet
                             Increases vision range and removes vision range penalties from low light.
                         Torso
-                            Inflicting lightning damage on a target builds up stacks of Charge
+                            Every tile of movement builds up stacks of Charge
                             As Charge increases, movement speed increases immensely,
                             while attack speed slows and lightning damage increases by an inverse of each other.
                                 e.g. On the first attack, attack speed slows to half and damage doubles.
@@ -155,8 +156,7 @@ Inspirations:
                             At max Charge, the player discharges.
                             (And does what? A Storm cloud that obscures vision? Chain lightning? Both? Nothing?)
                         Legs
-                            Increases Movement speed.
-                            All terrain costs one movement point, regardless of its base cost.
+                            The wearer gains a sudden burst of speed, damaging and passing through all enemies in a line.
                         Melee
                             
                         Shield
@@ -189,7 +189,7 @@ Inspirations:
                             At max Protection. (What happens? Anything at all?)
                         Legs
                             Grants the ability to burrow through the ground.
-                            While underground, hostile animals to not attack and docile animals to not run.
+                            While underground, hostile animals do not attack and docile animals do not run.
                         Melee
                             
                         Shield
