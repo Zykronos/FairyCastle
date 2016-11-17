@@ -95,7 +95,7 @@ Inspirations:
                             The wearer's vision includes the light from all tiles set on fire within range, even through walls.
                             This includes torches, lava, and fire elementals.
                         Torso
-                            All nearby terrain within one tile of the player is lit on fire,
+                            All terrain within one tile of the player is lit on fire,
                             causing heavy damage over time to anyone that enters the area. This area moves with the player.
                             Grants immunity to morale damage from fire.
                         Legs
@@ -156,8 +156,9 @@ Inspirations:
                                 On the second attack, attack speed slows to a quarter and damage quadruples.
                                 After several attacks, attack speed slows drastically to one attack every few turns,
                                 while lightning damage would increase to maintain the same amount of damage per turn.
-                            At max Charge, the player discharges.
-                            (And does what? A Storm cloud that obscures vision? Chain lightning? Both? Nothing?)
+                            At max Charge, the player can discharge, moving instantly to any unobstructed tile within range,
+                            and allows the player to take an additional turn for free with their base attack speed.
+                            Charge is set to 0 after the free turn.                            
                         Legs
                             The wearer gains a sudden burst of speed, damaging and passing through all enemies in a line.
                         Melee
