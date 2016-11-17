@@ -82,29 +82,32 @@ Inspirations:
                     Fire
                         Set Bonus
                             Two Piece
-                                Produces a fear aura effect, amplifying all morale damage done to all creatures within range.
-                                Morale damage is based on health damage taken.
+                             
                             Three Piece
                                 
                             Full Set
-                                
+                                Inflicting fire damage on a target builds up stacks of Heat
+                                As Heat increases, movement speed, attack speed, and fire damage increases
+                                At max Heat, all nearby terrain is lit on fire,
+                                causing heavy damage over time to anyone that enters the area, including the player.
+                                This area moves with the player.
                         Helmet
                             The wearer's vision includes the light from all tiles set on fire within range, even through walls.
                             This includes torches, lava, and fire elementals.
                         Torso
-                            Inflicting fire damage on a target builds up stacks of Heat
-                            As Heat increases, movement speed, attack speed, and fire damage increases
-                            At max Heat, all nearby terrain is lit on fire,
-                            causing heavy damage over time to anyone that enters the area, including the player.
-                            This area moves with the player.
+                            All nearby terrain within one tile of the player is lit on fire,
+                            causing heavy damage over time to anyone that enters the area. This area moves with the player.
+                            Grants immunity to morale damage from fire.
                         Legs
                             Teleport to any tile set on fire within range, even through walls.
                             Torches explode when teleported to, setting fire to the surounding tiles and destroying the torch.
                         Melee
-                            Deals fire damage with fire damage over time.
+                            Deals a flat amount of fire damage with fire damage over time.
+                            Multiple fire dots stack their damage, and reset their durations.
                             Special is a ranged pull.
                         Shield
-                            Grants immunity to morale damage from fire.
+                            Produces a fear aura effect, amplifying all morale damage done to all creatures within range.
+                            Morale damage is based on health damage taken.                            
                         Bow
                            Sets arrows on fire.
                            Special is an explosive arrow.
