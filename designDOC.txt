@@ -143,27 +143,28 @@ Inspirations:
                                 Increases Movement speed.
                                 All terrain costs one movement point, regardless of its base cost.
                             Three Piece
-                                
-                            Full Set
                                 Each kill resets the attack speed timer, allowing the wearer to attack again.
+                            Full Set
+                                Every tile of movement builds up stacks of Charge
+                                As Charge increases, movement speed increases immensely,
+                                while attack speed slows and lightning damage increases by an inverse of each other.
+                                    e.g. On the first attack, attack speed slows to half and damage doubles.
+                                    On the second attack, attack speed slows to a quarter and damage quadruples.
+                                    After several attacks, attack speed slows drastically to one attack every few turns,
+                                    while lightning damage would increase to maintain the same amount of damage per turn.
+                                At max Charge, the player can discharge, moving instantly to any unobstructed tile within range,
+                                and allows the player to take an additional turn for free with their base attack speed.
+                                Charge is set to 0 after the free turn.         
                         Helmet
                             Increases vision range and removes vision range penalties from low light.
                         Torso
-                            Every tile of movement builds up stacks of Charge
-                            As Charge increases, movement speed increases immensely,
-                            while attack speed slows and lightning damage increases by an inverse of each other.
-                                e.g. On the first attack, attack speed slows to half and damage doubles.
-                                On the second attack, attack speed slows to a quarter and damage quadruples.
-                                After several attacks, attack speed slows drastically to one attack every few turns,
-                                while lightning damage would increase to maintain the same amount of damage per turn.
-                            At max Charge, the player can discharge, moving instantly to any unobstructed tile within range,
-                            and allows the player to take an additional turn for free with their base attack speed.
-                            Charge is set to 0 after the free turn.                            
+                            
                         Legs
                             The wearer gains a sudden burst of speed, damaging and passing through all enemies in a line.
                         Melee
                             
                         Shield
+                            Sets a waypoint that the player can teleport to, regardless of distance.
                             (What would a high speed, high damage rune set that specializes in Hit and Run attacks
                             need a shield for?)
                             (Enchanting a shield with lightning emanates a bubble shield in a small aoe 
@@ -180,17 +181,18 @@ Inspirations:
                             Three Piece
                                 
                             Full Set
-                                
+                                Creates an armor made of stone, which grants an amount of
+                                Damage Threshold (DT), Damage Resistance (DR), and Morale Resistance (MR).
+                                Taking damage builds up stacks of Protection.
+                                    Simply getting hit is not enough.
+                                    This damage must pass through both the DT and DR to count.
+                                    Morale damage is based on health damage taken.
+                                As Protection increases, the armor's base Damage Threshold and Damage Resistance increases.
+                                At max Protection, the player can detonate their armor, heavily damaging all enemies in range.
                         Helmet
                             Allows living creatures within range to be seen, even through walls.
                         Torso
-                            Grants an amount of Damage Threshold (DT), Damage Resistance (DR), and Morale Resistance (MR).
-                            Taking damage builds up stacks of Protection.
-                                Simply getting hit is not enough.
-                                This damage must pass through both the DT and DR to count.
-                                Morale damage is based on health damage taken.
-                            As Protection increases, the armor's base Damage Threshold and Damage Resistance increases.
-                            At max Protection. (What happens? Anything at all?)
+                        
                         Legs
                             Grants the ability to burrow through the ground.
                             While underground, hostile animals do not attack and docile animals do not run.
